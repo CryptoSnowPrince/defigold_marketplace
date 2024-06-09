@@ -108,12 +108,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  scrollbar-width: none;
+}
+
 body {
   margin: 0;
   display: flex;
   /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
+  --base-text: #f8f8f8;
   --primary: #0e0d0d;
   --gold: #efb325;
   --dark-box: #252424;
@@ -137,4 +142,44 @@ li::marker {
   100% {
     transform: translateX(-100%);
   }
+}
+
+.explore-tag-item {
+  background: var(--gold);
+  text-align: center;
+  color: var(--dark-text);
+  font-family: 'SF UI Display';
+  font-weight: bold;
+  padding: 18px 0;
+  font-size: 14px;
+  line-height: 14px;
+  border-radius: 4px;
+  width: 128px;
+  @media only screen and (min-width: 1200px) {
+    font-size: 18px;
+    line-height: 18px;
+    width: 176px;
+  }
+}
+
+.section-title {
+  font-weight: 500;
+  color: var(--base-text);
+  font-size: 48px;
+  line-height: 44px;
+  @media only screen and (min-width: 1200px) {
+    font-size: 90px;
+    line-height: 80px;
+    text-align: center;
+  }
+}
+
+.start-tap-img {
+  border-radius: 5px 5px 0 0;
+}
+
+.road-bg {
+  background-size: contain;
+  background-image: url('assets/img/road.png');
+  background-repeat: repeat-y;
 }

@@ -15,11 +15,11 @@ const Home = () => {
       </span>
       <div className='flex flex-row gap-6 mb-5 text-sm leading-[14px] lg:text-lg lg:leading-[18px]'>
         <button className='flex-1 font-sfui w-32 lg:w-44 py-2 font-medium bg-gold rounded text-dark-text'>Start Collecting</button>
-        <button className='flex-1 font-sfui w-32 lg:w-44 py-2 text-[#f8f8f8] font-medium bg-transparent border-2 border-gold rounded'>Mint BTC NFT</button>
+        <button className='flex-1 font-sfui w-32 lg:w-44 py-2 text-base-text font-medium bg-transparent border-2 border-gold rounded'>Mint BTC NFT</button>
       </div>
       <img src={banner} alt='banner' className='scale-[1.03] lg:scale-100 ml-[-20px]' />
       <div className='flex flex-col py-28'>
-        <span className='lg:text-8xl lg:leading-[80px] text-5xl leading-[44px] font-medium lg:text-center px-5 pb-5 lg:pb-16'>Sponsored Taproot Asset</span>
+        <span className='section-title px-5 pb-5 lg:pb-16'>Sponsored Taproot Asset</span>
         <div className='grid lg:grid-cols-4 grid-cols-2 lg:gap-16 gap-4 m-auto'>
           <div className='rounded-md bg-dark-box flex flex-col lg:p-6 p-3'>
             <img src={firstTap} className='w-[140px] h-[140px] lg:w-[280px] lg:h-[280px] pb-[14px] lg:pb-7 rounded-md' alt='tap_asset' />

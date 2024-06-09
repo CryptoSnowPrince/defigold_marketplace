@@ -11,7 +11,7 @@ const Header = () => {
           <a href='#home' className='text-4xl font-medium'>Home</a>
         </span>
         <span>
-          <a href='#' className='text-4xl font-medium'>Explorer</a>
+          <a href='#explore' className='text-4xl font-medium'>Explorer</a>
         </span>
         <span>
           <a href='#' className='text-4xl leading-8 font-medium'>Collections</a>

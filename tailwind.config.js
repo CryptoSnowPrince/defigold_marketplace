@@ -10,6 +10,7 @@ module.exports = {
         sfui: 'SF UI Display',
       },
       colors: {
+        'base-text': `var(--base-text)`,
         primary: `var(--primary)`,
         gold: `var(--gold)`,
         'dark-box': `var(--dark-box)`,
