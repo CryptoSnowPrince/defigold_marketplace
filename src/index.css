@@ -183,3 +183,13 @@ li::marker {
   background-image: url('assets/img/road.png');
   background-repeat: repeat-y;
 }
+
+#explore {
+  background-image: url('./assets/img/sun.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  @media only screen and (max-width: 600px) {
+    background-size: cover;
+  }
+}
