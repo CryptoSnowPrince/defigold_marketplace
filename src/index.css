@@ -197,7 +197,7 @@ li::marker {
 .right-anim {
   transform: translate(50%);
   position: absolute;
-  animation: right-move 4s linear;
+  animation: right-move 2s linear;
 }
 
 @keyframes right-move {
@@ -206,20 +206,20 @@ li::marker {
 }
 
 .left-anim {
-  transform: translate(-50%);
+  transform: translate(0%);
   position: absolute;
   animation: left-move 2s linear;
 }
 
 @keyframes left-move {
-  0% { transform: translate(-150%) }
-  100% { transform: translate(-50%) }
+  0% { transform: translate(-100%) }
+  100% { transform: translate(0%) }
 }
 
 .main-anim {
   transform: translate(0%);
   position: absolute;
-  animation: main-move 5s linear;
+  animation: main-move 2s linear;
 }
 
 @keyframes main-move {
@@ -263,7 +263,16 @@ li::marker {
 
 .navbar {
   height: 100vh;
-  transition: height 1s;
+  top: -100vh;
+  transition: 1s;
+  z-index: 50;
+}
+
+.navbar-show {
+  height: 100vh;
+  top: 0;
+  transition: 1s;
+  z-index: 50;
 }
 
 .mini-button {
@@ -293,4 +302,11 @@ li::marker {
   color: #d9d9d9;
   font-size: 49px;
   line-height: 44px;
+}
+
+.sponsor-section {
+  will-change: transform, filter;
+  transform: translate3d(0px, 194.583px, 0px) scale3d(1.49893, 1.49893, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+  transform-style: preserve-3d;
+  filter: blur(49.893px) saturate(199.786%) brightness(199.786%);
 }

@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import Logo from '../assets/img/Logo.svg';
-import SMLogo from '../assets/img/sm_Logo.svg';
+import sLogo from '../assets/img/sm_Logo.svg';
 
 const Header = ({setNavbar}) => {
 
@@ -30,7 +30,7 @@ const Header = ({setNavbar}) => {
         <button className='flex items-center font-sfui font-bold rounded text-dark-text text-lg leading-[18px] bg-gold px-8 xl:px-[74px] py-4'>CONNECT WALLET</button>
       </div>
       <div className='w-screen flex flex-row lg:hidden justify-between items-center h-16 px-5 py-2.5'>
-        <img src={SMLogo} alt='logo' className='w-[34px] h-[42px]' />
+        <img src={sLogo} alt='logo' className='w-[34px] h-[42px]' />
         <div className='flex flex-row gap-5 h-full items-center'>
           <button className='bg-gold h-full font-sfui font-bold text-sm leading-[14px] px-6 rounded text-dark-text'>CONNECT WALLET</button>
           <button className='anim-button' onClick={setNavbar}>

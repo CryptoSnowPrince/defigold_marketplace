@@ -1,3 +1,7 @@
+import { Cursor, useTypewriter } from "react-simple-typewriter";
+import AnimatedText from 'animated-text-letters';
+import "animated-text-letters/index.css";
+import { AnimatedDots } from 'animated-dots';
 import banner from '../assets/img/home-banner.png';
 import firstTap from '../assets/img/tap1.png';
 import secondTap from '../assets/img/tap2.png';
@@ -7,10 +11,18 @@ import AnimLine from '../assets/img/animated_lines.png';
 import ExAnimLine from '../assets/img/ex_animated_lines.png';
 
 const Home = () => {
+  const [text, count] = useTypewriter({
+    words: [
+      "One Stop Shop for Lightening Taproot assets",
+    ],
+    loop: true,
+    delaySpeed: 1000,
+  });
   return (
     <div id='home' className='flex flex-col justify-center items-center m-auto lg:pt-24 pt-11 z-2 relative'>
       <span className='z-10 text-gold font-sfui text-center mb-5 lg:text-[32px] lg:leading-10 w-52 lg:w-full text-lg leading-5'>
-        One Stop Shop for Lightening Taproot assets
+        {text}
+        <Cursor />
       </span>
       <span className='z-10 font-teko font-light text-center mb-5 w-full lg:w-[1000px] text-7xl leading-[60px] lg:text-[168px] lg:leading-[152px]'>
         Secure Digital Artifacts Marketplace

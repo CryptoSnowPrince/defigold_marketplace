@@ -20,9 +20,9 @@ function App() {
     console.log(showNavbar);
   }, [showNavbar]);
 
-  if(showNavbar) {
-    return (
-      <div className={`flex flex-col h-0 w-screen navbar overflow-hidden`}>
+  return (
+    <div className='relative'>
+      <div className={`flex flex-col h-0 w-screen navbar${showNavbar ? '-show' : ''} overflow-hidden absolute bg-primary`}>
         <div className='flex flex-row justify-between items-center h-16 px-5 py-2.5'>
           <img src={logo} alt='logo' className='w-[34px] h-[42px]' />
           <div className='flex flex-row gap-5 h-full items-center'>
@@ -68,17 +68,14 @@ function App() {
           </div>
         </div>
       </div>
-    );
-  }
-
-  return (
-    <div className='flex flex-col items-start'>
-      <Header setNavbar={modifyNavbarStatus}/>
-      <Home />
-      <Explore />
-      <Mint />
-      <Start />
-      <Footer />
+      <div className='flex flex-col items-start'>
+        <Header setNavbar={modifyNavbarStatus}/>
+        <Home />
+        <Explore />
+        <Mint />
+        <Start />
+        <Footer />
+      </div>
     </div>
   );
 }
