@@ -193,3 +193,104 @@ li::marker {
     background-size: cover;
   }
 }
+
+.right-anim {
+  transform: translate(50%);
+  position: absolute;
+  animation: right-move 4s linear;
+}
+
+@keyframes right-move {
+  0% { transform: translate(150%) }
+  100% { transform: translate(50%) }
+}
+
+.left-anim {
+  transform: translate(-50%);
+  position: absolute;
+  animation: left-move 2s linear;
+}
+
+@keyframes left-move {
+  0% { transform: translate(-150%) }
+  100% { transform: translate(-50%) }
+}
+
+.main-anim {
+  transform: translate(0%);
+  position: absolute;
+  animation: main-move 5s linear;
+}
+
+@keyframes main-move {
+  0% { transform: translate(150%) }
+  100% { transform: translate(0%) }
+}
+
+.anim-button {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  height: 20px;
+  justify-content: center;
+  width: 48px;
+  z-index: 10;
+  transition-duration: 300ms;
+}
+
+.anim-button:hover {
+  gap: 5px;
+}
+
+.anim-button div {
+  background-color: white;
+  height: 2px;
+  width: 100%;
+  transition: background-color 300ms;
+}
+
+.anim-button div:last-child {
+  width: 22px;
+}
+
+.anim-button:hover div {
+  &:last-child {
+    transition: width 300ms;
+    width: 100%;
+  }
+  background-color: var(--gold);
+}
+
+.navbar {
+  height: 100vh;
+  transition: height 1s;
+}
+
+.mini-button {
+  height: 20px;
+  justify-content: center;
+  width: 48px;
+  z-index: 10;
+  transition-duration: 300ms;
+}
+
+.mini-button div {
+  background-color: white;
+  height: 2px;
+  width: 100%;
+  transition: background-color 300ms;
+}
+
+.mini-button:hover div {
+  background-color:var(--gold);
+}
+
+.nav-item {
+  border-bottom: 1px solid #f8f8f81a;
+  padding-top: 20px;
+  padding-bottom: 13px;
+  font-weight: 500;
+  color: #d9d9d9;
+  font-size: 49px;
+  line-height: 44px;
+}
