@@ -68,14 +68,17 @@ function App() {
           </div>
         </div>
       </div>
-      <div className='flex flex-col items-start'>
-        <Header setNavbar={modifyNavbarStatus}/>
-        <Home />
-        <Explore />
-        <Mint />
-        <Start />
-        <Footer />
-      </div>
+      {
+        !showNavbar &&
+        <div className='flex flex-col items-start'>
+          <Header setNavbar={modifyNavbarStatus}/>
+          <Home />
+          <Explore />
+          <Mint />
+          <Start />
+          <Footer />
+        </div>
+      }
     </div>
   );
 }
