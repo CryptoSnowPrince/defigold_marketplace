@@ -72,7 +72,10 @@ const Footer = () => {
           <span className='text-gold font-sfui font-semibold text-2xl leading-7'>
             Subscribe for News, Updates and Articles
           </span>
-          <img src={GoldArrow} alt='arrow' className='h-5' />
+          <div className='footer-image-container'>
+            <img src={GoldArrow} alt='arrow' className='footer-image' />
+            <div className='footer-shine'></div>
+          </div>
           <div className='flex flex-row p-[2px] border-solid border-2 border-light-text rounded-md w-1/2 items-center'>
             <input type='email' placeholder='E-mail' className='px-5 py-[14px] border-0 bg-transparent font-sfui text-xl leading-6 placeholder:text-hint-text flex-1' />
             <button className='bg-base-text rounded-md text-dark-text px-6 py-[18px] text-base leading-4 font-bold font-sfui'>SUBSCRIBE NOW</button>

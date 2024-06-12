@@ -34,7 +34,10 @@ const Mint = () => {
             <span className='text-gold text-[50px] leading-[45px]'>
               "AI Minter" is coming soon!&nbsp;
             </span>
-            <img src={whiteArrow} alt='arrow' className='h-[45px]' />
+            <div className='image-container'>
+              <img src={whiteArrow} alt='arrow' className='image' />
+              <div className='shine'></div>
+            </div>
           </div>
           <p className='text-2xl font-sfui'>
             If you're struggling to find a skilled artist to bring your Bitcoin NFT vision to life? Would you like to craft the sophisticated Digital Artifacts you envision?

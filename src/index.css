@@ -329,3 +329,84 @@ li::marker {
     transform: translateY(-30px);
   }
 }
+
+@media only screen and (max-width: 600px) {
+  @keyframes moveUpDown {
+    0%, 20%, 40%, 100% {
+      transform: translateY(-5px);
+    }
+    10%, 30% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  height: 45px;
+}
+
+.image {
+  display: block;
+  /* width: 45px; */
+  height: 45px;
+}
+
+.shine {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 23px;
+  height: 31px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="23" height="31" viewBox="0 0 23 31" fill="none"><path opacity="0.4" d="M0.5 0.916626L21.3333 15.5L0.49998 30.0833" stroke="%23F5F5F5" stroke-width="1.4"/></svg>');
+  background-size: cover;
+  transform: translateY(-50%);
+  pointer-events: none;
+  animation: shineMove 1s infinite;
+  filter: blur(2px);
+}
+
+@keyframes shineMove {
+  0% {
+    left: 10px;
+  }
+  100% {
+    left: calc(50%);
+  }
+}
+
+.footer-image-container {
+  position: relative;
+  display: inline-block;
+  height: 20px;
+}
+
+.footer-image {
+  display: block;
+  /* width: 45px; */
+  height: 20px;
+}
+
+.footer-shine {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 11px;
+  height: 18px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="18" viewBox="0 0 11 18" fill="none"><path opacity="0.4" d="M1 0.666671L9.33334 9.00001L1 17.3333" stroke="%23EFB325" stroke-width="1.4"/></svg>');
+  background-size: cover;
+  transform: translateY(-50%);
+  pointer-events: none;
+  animation: footerShineMove 1s infinite;
+  filter: blur(2px);
+}
+
+@keyframes footerShineMove {
+  0% {
+    left: 10px;
+  }
+  100% {
+    left: calc(100%);
+  }
+}
