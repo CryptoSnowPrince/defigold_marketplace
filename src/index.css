@@ -503,11 +503,7 @@ li::marker {
   background-color: var(--dark-box);
   display: flex;
   flex-direction: column;
-  padding: 0.75rem;
   transition: transform 0.2s ease;
-  @media only screen and (min-width: 1024px) {
-    padding: 1.5rem;
-  }
 }
 
 .start-item:hover {
@@ -520,4 +516,84 @@ li::marker {
   box-shadow: 0 0 4px 4px #a0cdf198;
   /* transform: translateY(-10px); */
   /* animation: moveUpDown 3s ease infinite; */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  z-index: 20;
+  background-color: var(--gold);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+}
+
+.dropdown-menu button {
+  width: 100%;
+  text-align: left;
+  padding: 8px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+  background-color: #caab67;
+}
+
+.filter-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  height: 20px;
+  justify-content: center;
+  width: 48px;
+  z-index: 10;
+  transition-duration: 300ms;
+}
+
+.filter-icon:hover {
+  gap: 5px;
+}
+
+.filter-icon div {
+  background-color: white;
+  height: 2px;
+  width: 100%;
+  transition: background-color 300ms;
+}
+
+.filter-icon div:last-child {
+  width: 22px;
+}
+
+.filter-icon:hover div {
+  &:last-child {
+    transition: width 300ms;
+    width: 100%;
+  }
+  background-color: var(--gold);
+}
+
+.mini-filter-icon {
+  height: 20px;
+  justify-content: center;
+  width: 48px;
+  z-index: 10;
+  transition-duration: 300ms;
+}
+
+.mini-filter-icon div {
+  background-color: white;
+  height: 2px;
+  width: 100%;
+  transition: background-color 300ms;
+}
+
+.mini-filter-icon:hover div {
+  background-color: var(--gold);
 }
