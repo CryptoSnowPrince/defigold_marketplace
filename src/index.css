@@ -3,94 +3,94 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Teko';
+  font-family: "Teko";
   font-style: normal; /* Light */
   font-weight: 300;
-  src: url('./assets/font/Teko-Light.ttf');
+  src: url("./assets/font/Teko-Light.ttf");
 }
 
 @font-face {
-  font-family: 'Teko';
+  font-family: "Teko";
   font-style: normal; /* Regular */
   font-weight: 400;
-  src: url('./assets/font/Teko-Regular.ttf');
+  src: url("./assets/font/Teko-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Teko';
+  font-family: "Teko";
   font-style: normal; /* Medium */
   font-weight: 500;
-  src: url('./assets/font/Teko-Medium.ttf');
+  src: url("./assets/font/Teko-Medium.ttf");
 }
 
 @font-face {
-  font-family: 'Teko';
+  font-family: "Teko";
   font-style: normal; /* SemiBold */
   font-weight: 600;
-  src: url('./assets/font/Teko-SemiBold.ttf');
+  src: url("./assets/font/Teko-SemiBold.ttf");
 }
 
 @font-face {
-  font-family: 'Teko';
+  font-family: "Teko";
   font-style: normal; /* Bold */
   font-weight: 700;
-  src: url('./assets/font/Teko-Bold.ttf');
+  src: url("./assets/font/Teko-Bold.ttf");
 }
 
 @font-face {
-  font-family: 'SF UI Display';
+  font-family: "SF UI Display";
   font-style: normal; /* Ultra-Light */
   font-weight: 100;
-  src: url('./assets/font/sf-ui-display-ultralight.otf');
+  src: url("./assets/font/sf-ui-display-ultralight.otf");
 }
 
 @font-face {
-  font-family: 'SF UI Display';
+  font-family: "SF UI Display";
   font-style: normal; /* Thin */
   font-weight: 200;
-  src: url('./assets/font/sf-ui-display-thin.otf');
+  src: url("./assets/font/sf-ui-display-thin.otf");
 }
 
 @font-face {
-  font-family: 'SF UI Display';
+  font-family: "SF UI Display";
   font-style: normal; /* Light */
   font-weight: 300;
-  src: url('./assets/font/sf-ui-display-light.otf');
+  src: url("./assets/font/sf-ui-display-light.otf");
 }
 
 @font-face {
-  font-family: 'SF UI Display';
+  font-family: "SF UI Display";
   font-style: normal; /* Medium */
   font-weight: 500;
-  src: url('./assets/font/sf-ui-display-medium.otf');
+  src: url("./assets/font/sf-ui-display-medium.otf");
 }
 
 @font-face {
-  font-family: 'SF UI Display';
+  font-family: "SF UI Display";
   font-style: normal; /* SemiBold */
   font-weight: 600;
-  src: url('./assets/font/sf-ui-display-semibold.otf');
+  src: url("./assets/font/sf-ui-display-semibold.otf");
 }
 
 @font-face {
-  font-family: 'SF UI Display';
+  font-family: "SF UI Display";
   font-style: normal; /* Bold */
   font-weight: 700;
-  src: url('./assets/font/sf-ui-display-bold.otf');
+  src: url("./assets/font/sf-ui-display-bold.otf");
 }
 
 @font-face {
-  font-family: 'SF UI Display';
+  font-family: "SF UI Display";
   font-style: normal; /* Heavy */
   font-weight: 800;
-  src: url('./assets/font/sf-ui-display-heavy.otf');
+  src: url("./assets/font/sf-ui-display-heavy.otf");
 }
 
 @font-face {
-  font-family: 'SF UI Display';
+  font-family: "SF UI Display";
   font-style: normal; /* Black */
   font-weight: 900;
-  src: url('./assets/font/sf-ui-display-black.otf');
+  src: url("./assets/font/sf-ui-display-black.otf");
 }
 
 :root {
@@ -131,16 +131,34 @@ li::marker {
   display: none;
 }
 
-.text-anim {
-  animation: text-flow 20s linear infinite;
+.marquee {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 10;
+  background: var(--gold);
+  padding: 0.5rem 0;
+  width: 100%;
 }
 
-@keyframes text-flow {
+.marquee-content {
+  display: flex;
+  width: 200%; /* This ensures it covers at least twice the screen width */
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-content span {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Keyframes for the scrolling effect */
+@keyframes marquee {
   0% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
 
@@ -148,7 +166,7 @@ li::marker {
   background: var(--gold);
   text-align: center;
   color: var(--dark-text);
-  font-family: 'SF UI Display';
+  font-family: "SF UI Display";
   font-weight: bold;
   padding: 18px 0;
   font-size: 14px;
@@ -180,12 +198,12 @@ li::marker {
 
 .road-bg {
   background-size: contain;
-  background-image: url('assets/img/road.png');
+  background-image: url("assets/img/road.png");
   background-repeat: repeat-y;
 }
 
 #explore {
-  background-image: url('./assets/img/sun.png');
+  background-image: url("./assets/img/sun.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -201,8 +219,12 @@ li::marker {
 }
 
 @keyframes right-move {
-  0% { transform: translate(150%) }
-  100% { transform: translate(50%) }
+  0% {
+    transform: translate(150%);
+  }
+  100% {
+    transform: translate(50%);
+  }
 }
 
 .left-anim {
@@ -212,8 +234,12 @@ li::marker {
 }
 
 @keyframes left-move {
-  0% { transform: translate(-100%) }
-  100% { transform: translate(0%) }
+  0% {
+    transform: translate(-100%);
+  }
+  100% {
+    transform: translate(0%);
+  }
 }
 
 .main-anim {
@@ -223,8 +249,12 @@ li::marker {
 }
 
 @keyframes main-move {
-  0% { transform: translate(150%) }
-  100% { transform: translate(0%) }
+  0% {
+    transform: translate(150%);
+  }
+  100% {
+    transform: translate(0%);
+  }
 }
 
 .anim-button {
@@ -291,7 +321,7 @@ li::marker {
 }
 
 .mini-button:hover div {
-  background-color:var(--gold);
+  background-color: var(--gold);
 }
 
 .nav-item {
@@ -322,20 +352,28 @@ li::marker {
 }
 
 @keyframes moveUpDown {
-  0%, 20%, 40%, 100% {
+  0%,
+  20%,
+  40%,
+  100% {
     transform: translateY(-10px);
   }
-  10%, 30% {
+  10%,
+  30% {
     transform: translateY(-30px);
   }
 }
 
 @media only screen and (max-width: 600px) {
   @keyframes moveUpDown {
-    0%, 20%, 40%, 100% {
+    0%,
+    20%,
+    40%,
+    100% {
       transform: translateY(-5px);
     }
-    10%, 30% {
+    10%,
+    30% {
       transform: translateY(-10px);
     }
   }
