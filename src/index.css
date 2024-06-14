@@ -185,7 +185,7 @@ li::marker {
   color: var(--base-text);
   font-size: 48px;
   line-height: 44px;
-  @media only screen and (min-width: 1200px) {
+  @media only screen and (min-width: 1000px) {
     font-size: 90px;
     line-height: 80px;
     text-align: center;

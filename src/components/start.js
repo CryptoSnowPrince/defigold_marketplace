@@ -5,11 +5,11 @@ import Item from "./Item";
 
 const Start = () => {
   return (
-    <div id="start" className="flex flex-col w-full road-bg">
+    <div id="start" className="flex flex-col w-screen road-bg">
       <span className="text-center section-title pt-5 lg:pt-[68px] pb-7 lg:pb-[88px]">
         Getting Started
       </span>
-      <div className="flex flex-col lg:flex-row gap-[30px] lg:gap-14 w-full px-10 lg:px-56 pb-[58px] lg:pb-[202px]">
+      <div className="flex flex-col lg:flex-row gap-[30px] xl:gap-14 w-screen px-10 xl:px-56 pb-[58px] xl:pb-[202px]">
         <Item
           imgSrc={firstTap}
           title="Taproot Assets: An Overview of Bitcoin NFTs"
