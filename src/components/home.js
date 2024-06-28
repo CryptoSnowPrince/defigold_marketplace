@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <div
       id='home'
-      className='flex flex-col justify-center items-center w-screen lg:pt-24 pt-11 z-2 relative overflow-x-hidden'
+      className='flex flex-col justify-center items-center w-screen lg:pt-60 pt-28 z-2 relative overflow-x-hidden'
     >
       <div className='h-[80px] lg:h-10 w-52 lg:w-full text-center'>
         <span className='z-10 text-gold font-sfui text-center mb-5 lg:text-[32px] lg:leading-10 w-52 lg:w-full text-lg leading-5'>
