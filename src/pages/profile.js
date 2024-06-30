@@ -32,7 +32,7 @@ const Profile = () => {
         setWalletInscriptions(_inscriptions.inscription);
       } else {
         console.log(inscriptions);
-        setWalletInscriptions(inscriptions);
+        setWalletInscriptions(inscriptions.inscription);
       }
       setLoaded(true);
     };

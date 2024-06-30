@@ -134,7 +134,15 @@ const Detail = ({ setWalletPanel }) => {
                     placeholder='0.1 BTC'
                     onChange={(e) => onChangeInput(e)}
                   />
-                  <button className='bg-gold w-full text-dark-text font-sfui text-lg py-2 rounded-lg flex gap-2 justify-center items-center'>
+                  <button
+                    className='bg-gold w-full text-dark-text font-sfui text-lg py-2 rounded-lg flex gap-2 justify-center items-center'
+                    onClick={() =>
+                      listInscription(
+                        assetInfo,
+                        Math.floor(parseFloat(value.listprice) * 100_000_000)
+                      )
+                    }
+                  >
                     <FontAwesomeIcon icon={faTags} />
                     {assetInfo.price ? `Edit Now` : `List Now`}
                   </button>

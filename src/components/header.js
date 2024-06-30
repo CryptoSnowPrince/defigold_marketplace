@@ -73,9 +73,9 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
         }`}
       >
         <img src={sLogo} alt='logo' className='w-[34px] h-[42px]' />
-        <div className='flex flex-row gap-5 h-full items-center'>
+        <div className='flex flex-row gap-5 py-2 h-full items-center'>
           <button
-            className='bg-gold h-full font-sfui font-bold text-sm leading-[14px] px-6 rounded text-dark-text'
+            className='bg-gold h-full my-2 font-sfui font-bold text-sm leading-[14px] px-6 rounded text-dark-text'
             onClick={setWalletPanel}
           >
             {connected

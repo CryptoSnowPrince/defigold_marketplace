@@ -5,16 +5,25 @@ import Card from '../components/card';
 
 const Explorer = () => {
   const [listedData, setListedData] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const _inscriptions = await getList();
       setListedData(_inscriptions);
+      setFilteredList(_inscriptions);
       setLoaded(true);
     };
     fetchData();
   }, []);
+
+  const keywordUpdated = (e) => {
+    const newList = listedData.filter((item) =>
+      item.inscriptionNumber.toString().includes(e.target.value)
+    );
+    setFilteredList(newList);
+  };
 
   return (
     <div className='flex flex-col lg:py-60 py-28 xl:px-56 px-5 lg:px-28'>
@@ -30,6 +39,7 @@ const Explorer = () => {
             type='text'
             placeholder='Search Here'
             className='bg-transparent outline-none w-full text-lg p-2.5'
+            onChange={keywordUpdated}
           />
           <button className='rounded-xl border-2 bg-dark-box hover:bg-gold hover:border-gold h-fit border-gray-500 p-2 absolute top-1 right-1 bottom-1'>
             <MagnifyingGlassIcon className='h-6 w-6 text-white' />
@@ -43,8 +53,8 @@ const Explorer = () => {
         </div>
       )}
       <div className='grid lg:grid-cols-4 grid-cols-2 lg:gap-16 gap-4 m-auto'>
-        {listedData && listedData.length > 0 ? (
-          listedData.map((item, index) => {
+        {filteredList && filteredList.length > 0 ? (
+          filteredList.map((item, index) => {
             return (
               <Card
                 key={index}
