@@ -464,6 +464,34 @@ li::marker {
   }
 }
 
+.product-card .product-action {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  opacity: 0;
+  transition: ease all 0.35s;
+  @media only screen and (max-width: 600px) {
+    margin-top: 0.5rem;
+    position: inherit;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 1;
+  }
+}
+
+.product-card:hover .product-action {
+  opacity: 1;
+}
+
+.product-card:hover .product-info {
+  opacity: 0;
+  @media only screen and (max-width: 600px) {
+    opacity: 1;
+  }
+}
+
 @property --a {
   syntax: '<angle>';
   inherits: false;

@@ -1,8 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Logo from '../assets/img/Logo.svg';
 import sLogo from '../assets/img/sm_Logo.svg';
+import { GlobalContext } from './../context/globalContext';
+import { getAddressInfoByUnisat } from '../utils/utils';
 
 const Header = ({ visibility, setNavbar, setWalletPanel }) => {
+  const { connected, paymentAddress } = useContext(GlobalContext);
+  const [balance, setBalance] = useState(null);
+  const [payAddrInfo, setPayAddrInfo] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPayAddrInfo = async () => {
+      try {
+        const payAddrInfoByUnisat = await getAddressInfoByUnisat(
+          paymentAddress.address
+        );
+        setBalance(payAddrInfoByUnisat.btcSatoshi);
+      } catch (err) {
+        setError(err);
+      }
+    };
+
+    fetchPayAddrInfo();
+  }, [connected]);
+
   return (
     <>
       <div className='w-screen fixed bg-dark-text z-[40] hidden lg:flex flex-row items-center justify-between h-36 pt-[72px] pb-8 xl:px-8 px-[69px]'>
@@ -11,7 +33,7 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
         </div>
         <div className='flex flex-row flex-1 items-center justify-around xl:justify-center xl:gap-16'>
           <span>
-            <a href='#home' className='text-4xl font-medium'>
+            <a href='/' className='text-4xl font-medium'>
               Home
             </a>
           </span>
@@ -40,7 +62,9 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
           className='flex items-center font-sfui font-bold rounded text-dark-text text-lg leading-[18px] bg-gold px-8 xl:px-[74px] py-4'
           onClick={setWalletPanel}
         >
-          CONNECT WALLET
+          {connected
+            ? `${(balance / 100_000_000).toFixed(5)} BTC`
+            : `CONNECT WALLET`}
         </button>
       </div>
       <div
@@ -54,7 +78,9 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
             className='bg-gold h-full font-sfui font-bold text-sm leading-[14px] px-6 rounded text-dark-text'
             onClick={setWalletPanel}
           >
-            CONNECT WALLET
+            {connected
+              ? `${(balance / 100_000_000).toFixed(5)} BTC`
+              : `CONNECT WALLET`}
           </button>
           <button className='anim-button' onClick={setNavbar}>
             <div></div>

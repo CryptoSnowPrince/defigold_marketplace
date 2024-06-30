@@ -9,6 +9,7 @@ import { GlobalContext, useGlobalContext } from './context/globalContext';
 import Navbar from './components/navbar';
 import WalletModal from './components/walletModal';
 import Main from './components/main';
+import Detail from './pages/detail';
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -76,6 +77,11 @@ function App() {
           {!showNavbar && (
             <Routes>
               <Route path='/' element={<Main />} />
+              <Route path='/detail' element={<Detail />} />
+              <Route
+                path='/detail/:resId'
+                element={<Detail setWalletPanel={modifyWalletPanel} />}
+              />
             </Routes>
           )}
         </div>

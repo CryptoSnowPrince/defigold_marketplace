@@ -71,6 +71,7 @@ export function useGlobalContext() {
   const XverseProviders = window?.XverseProviders;
 
   const [wallet, setWallet] = useState('');
+  const [resAddress, setResAddress] = useState('');
   const [connected, setConnected] = useState(false);
 
   const [satBalance, setSatBalance] = useState(0);
@@ -136,6 +137,7 @@ export function useGlobalContext() {
                 }
 
                 setOrdinalsAddress(ordinalsAddress);
+                setResAddress(ordinalsAddress.address);
                 setPaymentAddress(paymentAddress);
                 toast.success('Xverse Wallet Connected!', ALERT_SUCCESS_CONFIG);
                 setConnected(true);
@@ -154,7 +156,6 @@ export function useGlobalContext() {
               return;
             }
             const result = await unisat.requestAccounts();
-            console.log('hhhhh', result);
             if (result.length > 0) {
               let network = await unisat.getNetwork();
               console.log(network);
@@ -183,6 +184,7 @@ export function useGlobalContext() {
                 addressInfo.type = ADDR_TYPE_SH_WPKH;
               }
 
+              setResAddress(address);
               setOrdinalsAddress({
                 address,
                 addressType: addressInfo.type,
@@ -193,7 +195,6 @@ export function useGlobalContext() {
                 addressType: addressInfo.type,
                 publicKey,
               });
-              console.log('asdffasdfd');
               toast.success('Unisat Wallet Connected!', ALERT_SUCCESS_CONFIG);
               setConnected(true);
             } else {
@@ -225,6 +226,7 @@ export function useGlobalContext() {
             }
             ordinalsAddress.addressType = ordinalsAddress.type;
 
+            setResAddress(ordinalsAddress.address);
             setOrdinalsAddress(ordinalsAddress);
             setPaymentAddress(paymentAddress);
             toast.success('Leather Wallet Connected!', ALERT_SUCCESS_CONFIG);
@@ -249,6 +251,7 @@ export function useGlobalContext() {
     }
     toast.success(`${wallet} Wallet Disconnected!`, ALERT_SUCCESS_CONFIG);
     setWallet('');
+    setResAddress('');
     setConnected(false);
     setSatBalance(0);
     setInscriptions({});
@@ -1333,6 +1336,8 @@ export function useGlobalContext() {
     connected,
     wallet,
     setWallet,
+    resAddress,
+    setResAddress,
     paymentAddress,
     setPaymentAddress,
     ordinalsAddress,

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Cursor, useTypewriter } from 'react-simple-typewriter';
 import AnimatedText from 'animated-text-letters';
 import 'animated-text-letters/index.css';
@@ -11,6 +12,7 @@ import fourthTap from '../assets/img/tap4.png';
 import AnimLine from '../assets/img/animated_lines.png';
 import ExAnimLine from '../assets/img/ex_animated_lines.png';
 import Card from './card';
+import { getList } from './../utils/utils';
 
 const Home = () => {
   const [text, count] = useTypewriter({
@@ -18,7 +20,24 @@ const Home = () => {
     loop: true,
     delaySpeed: 1000,
   });
-  const bannerText = 'New Home for Bitcoin NFTs        -        ';
+  const bannerText = 'New Home for Bitcoin NFTs - ';
+  const [tradeInscriptions, setTradeInscriptions] = useState({});
+
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const list = await getList();
+      if (!list || list.length <= 0) {
+        setTradeInscriptions([]);
+      } else {
+        console.log(list);
+        setTradeInscriptions(list.slice(0, 4));
+      }
+      setLoaded(true);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div
@@ -53,26 +72,22 @@ const Home = () => {
             Sponsored Taproot Asset
           </span>
           <div className='grid lg:grid-cols-4 grid-cols-2 lg:gap-16 gap-4 m-auto'>
-            <Card
-              imgSrc={firstTap}
-              title='Taproot Asset #34118'
-              price={0.0001}
-            />
-            <Card
-              imgSrc={secondTap}
-              title='Taproot Asset #34118'
-              price={0.0001}
-            />
-            <Card
-              imgSrc={thirdTap}
-              title='Taproot Asset #34118'
-              price={0.0001}
-            />
-            <Card
-              imgSrc={fourthTap}
-              title='Taproot Asset #34118'
-              price={0.0001}
-            />
+            {tradeInscriptions && tradeInscriptions.length > 0 ? (
+              tradeInscriptions.map((item, index) => {
+                return (
+                  <Card
+                    resId={item.inscriptionId}
+                    resNumber={item.inscriptionNumber}
+                    address={item.address}
+                    price={item.price}
+                  />
+                );
+              })
+            ) : (
+              <div className='text-center col-span-4 text-3xl'>
+                <span>No Data Found</span>
+              </div>
+            )}
           </div>
         </div>
       </Zoom>
