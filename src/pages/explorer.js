@@ -18,7 +18,7 @@ const Explorer = () => {
 
   return (
     <div className='flex flex-col lg:py-60 py-28 xl:px-56 px-5 lg:px-28'>
-      <div className='flex flex-col pt-10 pb-20 gap-4 justify-center items-center'>
+      <div className='flex flex-col pt-10 pb-20 gap-4 justify-center items-center relative'>
         <span className='font-sfui text-white text-center lg:text-6xl font-bold text-xl'>
           Taproot Asset Explorer
         </span>
@@ -35,6 +35,7 @@ const Explorer = () => {
             <MagnifyingGlassIcon className='h-6 w-6 text-white' />
           </button>
         </div>
+        <div className='z-[-1] absolute top-0 start-0 end-0 bottom-0 bg-gold blur-[160px] opacity-10'></div>
       </div>
       {listedData && listedData.length && (
         <div className=' mb-6 font-sfui'>
