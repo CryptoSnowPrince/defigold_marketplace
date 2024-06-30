@@ -1,8 +1,20 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { GlobalContext } from '../context/globalContext';
 import { ORDINALS_URL } from '../utils/constants';
-import { getInscriptionInfo, getList } from '../utils/utils';
+import {
+  copyToClipBoard,
+  getDisplayString,
+  getInscriptionInfo,
+  getList,
+} from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTags } from '@fortawesome/free-solid-svg-icons';
 
@@ -91,7 +103,7 @@ const Detail = ({ setWalletPanel }) => {
           </Link>
           <div className='flex flex-col text-start gap-2'>
             <Link
-              className='text-start text-gold text-6xl hover:text-opacity-15'
+              className='text-start text-gold text-6xl hover:text-opacity-15 w-fit'
               to={`${ORDINALS_URL}/inscription/${resId}`}
               target='_blank'
             >
@@ -151,6 +163,106 @@ const Detail = ({ setWalletPanel }) => {
                   </button>
                 )}
             </div>
+            <Disclosure
+              as='div'
+              className='border border-gray-500 rounded-lg text-xl font-sfui'
+              defaultOpen={true}
+            >
+              {({ open }) => (
+                <>
+                  <DisclosureButton
+                    className={`group flex w-full items-center justify-between border-gray-500 p-4${
+                      open ? ' border-b' : ''
+                    }`}
+                  >
+                    <span className='font-medium text-white group-hover:text-white/80 flex items-center gap-2'>
+                      <InformationCircleIcon className='h-6 w-6' />
+                      Inscription Details
+                    </span>
+                    <ChevronDownIcon
+                      className={`h-5 w-5 transform transition-transform duration-300 ${
+                        open ? 'rotate-180' : ''
+                      } fill-white/60 group-hover:fill-white/50`}
+                    />
+                  </DisclosureButton>
+                  <DisclosurePanel
+                    className={`p-4 flex flex-col gap-2 mt-2 text-white/50 transition-all duration-1000 overflow-hidden ${
+                      open ? 'max-h-screen' : 'max-h-0'
+                    }`}
+                  >
+                    <div className='flex flex-row justify-between'>
+                      <span className='text-white/80'>Inscription ID</span>
+                      <span
+                        className='hover:cursor-pointer'
+                        onClick={() => copyToClipBoard(assetInfo.inscriptionId)}
+                      >
+                        {getDisplayString(resId, 10, 6)}
+                      </span>
+                    </div>
+                    <div className='flex flex-row justify-between'>
+                      <span className='text-white/80'>Inscription Number</span>
+                      <span
+                        className='hover:cursor-pointer'
+                        onClick={() =>
+                          copyToClipBoard(assetInfo.inscriptionNumber)
+                        }
+                      >
+                        {assetInfo.inscriptionNumber}
+                      </span>
+                    </div>
+                    <div className='flex flex-row justify-between'>
+                      <span className='text-white/80'>Owner</span>
+                      <span
+                        className='hover:cursor-pointer'
+                        onClick={() => copyToClipBoard(assetInfo.address)}
+                      >
+                        {getDisplayString(assetInfo.address, 10, 6)}
+                      </span>
+                    </div>
+                    {assetInfo.price && (
+                      <div className='flex flex-row justify-between'>
+                        <span className='text-white/80'>Price</span>
+                        <span>{`${(assetInfo.price / 100_000_000).toFixed(
+                          4
+                        )} BTC`}</span>
+                      </div>
+                    )}
+                    <div className='flex flex-row justify-between'>
+                      <span className='text-white/80'>Content</span>
+                      <Link
+                        className='decoration-1 underline'
+                        to={`${ORDINALS_URL}/content/${resId}`}
+                      >
+                        Link
+                      </Link>
+                    </div>
+                    <div className='flex flex-row justify-between'>
+                      <span className='text-white/80'>Content Type</span>
+                      <span>{assetInfo.contentType}</span>
+                    </div>
+                    <div className='flex flex-row justify-between'>
+                      <span className='text-white/80'>Created</span>
+                      <span className='w-1/3 text-end'>
+                        {new Date(assetInfo.timestamp).toUTCString()}
+                      </span>
+                    </div>
+                    <div className='flex flex-row justify-between'>
+                      <span className='text-white/80'>Genesis Transaction</span>
+                      <span
+                        className='hover:cursor-pointer'
+                        onClick={() => copyToClipBoard(assetInfo.address)}
+                      >
+                        {getDisplayString(assetInfo.address, 10, 6)}
+                      </span>
+                    </div>
+                    <div className='flex flex-row justify-between'>
+                      <span className='text-white/80'>Content Length</span>
+                      <span>{assetInfo.contentLength}</span>
+                    </div>
+                  </DisclosurePanel>
+                </>
+              )}
+            </Disclosure>
           </div>
         </div>
       )}
