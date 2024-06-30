@@ -11,7 +11,7 @@ const Main = () => {
       <Explore />
       <Mint />
       <Start />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

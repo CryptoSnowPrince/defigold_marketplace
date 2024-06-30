@@ -11,6 +11,9 @@ import WalletModal from './components/walletModal';
 import Main from './pages/main';
 import Detail from './pages/detail';
 import Profile from './pages/profile';
+import Footer from './components/footer';
+import Mint from './pages/mint';
+import Explorer from './pages/explorer';
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -85,8 +88,14 @@ function App() {
               />
               <Route path='/profile' element={<Profile />} />
               <Route path='/profile/:wallet' element={<Profile />} />
+              <Route
+                path='/mint'
+                element={<Mint setWalletPanel={modifyWalletPanel} />}
+              />
+              <Route path='/explorer' element={<Explorer />} />
             </Routes>
           )}
+          <Footer />
         </div>
       </Router>
       <ToastContainer />

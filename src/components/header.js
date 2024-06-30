@@ -38,7 +38,7 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
             </a>
           </span>
           <span>
-            <a href='#explore' className='text-4xl font-medium'>
+            <a href='/explorer' className='text-4xl font-medium'>
               Explorer
             </a>
           </span>
@@ -53,7 +53,7 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
             </a>
           </span>
           <span>
-            <a href='#' className='text-4xl font-medium'>
+            <a href='/mint' className='text-4xl font-medium'>
               Mint
             </a>
           </span>

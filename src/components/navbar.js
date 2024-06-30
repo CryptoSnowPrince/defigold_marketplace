@@ -21,10 +21,10 @@ const Navbar = ({ showNavbar, modifyNavbar }) => {
       </div>
       <div className='flex flex-col h-[calc(100vh-64px)] overflow-y-auto'>
         <div className='flex flex-col pl-10'>
-          <a href='#home' className='nav-item' onClick={modifyNavbar}>
+          <a href='/' className='nav-item' onClick={modifyNavbar}>
             Home
           </a>
-          <a href='#explore' className='nav-item' onClick={modifyNavbar}>
+          <a href='/explorer' className='nav-item' onClick={modifyNavbar}>
             Explorer
           </a>
           <a href='#' className='nav-item' onClick={modifyNavbar}>
@@ -33,7 +33,7 @@ const Navbar = ({ showNavbar, modifyNavbar }) => {
           <a href='#' className='nav-item' onClick={modifyNavbar}>
             Launchpad
           </a>
-          <a href='#' className='nav-item' onClick={modifyNavbar}>
+          <a href='/mint' className='nav-item' onClick={modifyNavbar}>
             Mint
           </a>
         </div>
