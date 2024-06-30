@@ -76,6 +76,7 @@ const Home = () => {
               tradeInscriptions.map((item, index) => {
                 return (
                   <Card
+                    key={index}
                     resId={item.inscriptionId}
                     resNumber={item.inscriptionNumber}
                     address={item.address}
@@ -84,7 +85,7 @@ const Home = () => {
                 );
               })
             ) : (
-              <div className='text-center col-span-4 text-3xl'>
+              <div className='text-center col-span-2 lg:col-span-4 text-3xl'>
                 <span>No Data Found</span>
               </div>
             )}

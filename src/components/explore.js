@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Zoom } from 'react-awesome-reveal';
 import firstTap from '../assets/img/tap5.png';
 import secondTap from '../assets/img/tap6.png';
@@ -6,10 +6,27 @@ import thirdTap from '../assets/img/tap7.png';
 import fourthTap from '../assets/img/tap8.png';
 import sunLight from '../assets/img/sun.png';
 import Card from './card';
+import { getList } from '../utils/utils';
 
 const Explore = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState('Art');
+  const [listedData, setListedData] = useState({});
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const list = await getList();
+      if (!list || list.length <= 0) {
+        setListedData([]);
+      } else {
+        console.log(list);
+        setListedData(list.slice(0, 8));
+      }
+      setLoaded(true);
+    };
+    fetchData();
+  }, []);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -124,6 +141,23 @@ const Explore = () => {
           )}
         </div>
         <div className='grid lg:grid-cols-4 grid-cols-2 pb-[55px] lg:gap-16 lg:pb-[405px] gap-4 m-auto'>
+          {listedData && listedData.length > 0 ? (
+            listedData.map((item, index) => {
+              return (
+                <Card
+                  key={index}
+                  resId={item.inscriptionId}
+                  resNumber={item.inscriptionNumber}
+                  address={item.address}
+                  price={item.price}
+                />
+              );
+            })
+          ) : (
+            <div className='text-center lg:col-span-4 col-span-2 text-3xl'>
+              <span>No Data Found</span>
+            </div>
+          )}
           {/* <Card imgSrc={firstTap} title="Taproot Asset #34118" price={0.0001} />
           <Card
             imgSrc={secondTap}

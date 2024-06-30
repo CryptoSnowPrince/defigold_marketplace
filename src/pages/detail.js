@@ -85,7 +85,7 @@ const Detail = ({ setWalletPanel }) => {
   }, [resId, navigate]);
 
   return (
-    <div className='lg:py-60 py-28 px-56 text-center'>
+    <div className='lg:py-60 py-28 xl:px-56 px-5 lg:px-28 text-center'>
       {!loadedData || !assetInfo || Object.keys(assetInfo).length <= 0 ? (
         <span className='text-center text-4xl'>Loading...</span>
       ) : (

@@ -8,8 +8,9 @@ import ProgressBar from './components/progressbar';
 import { GlobalContext, useGlobalContext } from './context/globalContext';
 import Navbar from './components/navbar';
 import WalletModal from './components/walletModal';
-import Main from './components/main';
+import Main from './pages/main';
 import Detail from './pages/detail';
+import Profile from './pages/profile';
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -82,6 +83,8 @@ function App() {
                 path='/detail/:resId'
                 element={<Detail setWalletPanel={modifyWalletPanel} />}
               />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/profile/:wallet' element={<Profile />} />
             </Routes>
           )}
         </div>
