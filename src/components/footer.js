@@ -102,7 +102,7 @@ const Footer = () => {
             <input
               type='email'
               placeholder='E-mail'
-              className='px-5 py-[14px] border-0 bg-transparent font-sfui text-xl leading-6 placeholder:text-hint-text flex-1'
+              className='px-5 py-[14px] border-0 bg-transparent font-sfui text-xl leading-6 placeholder:text-hint-text flex-1 outline-none'
             />
             <button className='bg-base-text rounded-md text-dark-text px-6 py-[18px] text-base leading-4 font-bold font-sfui'>
               SUBSCRIBE NOW
@@ -125,10 +125,10 @@ const Footer = () => {
             <span className='text-gold font-teko text-[40px] leading-9 pb-3'>
               Marketplace
             </span>
-            <span>All NFTs</span>
-            <span>Collections</span>
-            <span>Launchpad</span>
-            <span>Mint</span>
+            <Link to='/explorer'>All NFTs</Link>
+            <Link to='/collections'>Collections</Link>
+            {/* <Link>Launchpad</Link> */}
+            <Link to='/mint'>Mint</Link>
           </div>
           <div className='flex flex-col flex-1 mx-auto gap-7 text-2xl text-center'>
             <span className='text-gold font-teko text-[40px] leading-9 pb-3'>
@@ -143,20 +143,28 @@ const Footer = () => {
             <span className='pb-2 text-gold text-[40px] leading-9'>
               Join Us
             </span>
-            <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
+            <Link
+              target='_blank'
+              to='https://twitter.com/TeamDefiGold'
+              className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'
+            >
               <img src={XIcon} alt='twitter' className='mr-7' />
               <span className='mr-4'>X</span>
-              <a target='_blank' href='https://twitter.com/TeamDefiGold'>
-                <img src={LinkIcon} alt='link' className='w-8 h-8' />
-              </a>
-            </div>
-            <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
+              {/* <a target='_blank' href='https://twitter.com/TeamDefiGold'> */}
+              <img src={LinkIcon} alt='link' className='w-8 h-8' />
+              {/* </a> */}
+            </Link>
+            <Link
+              target='_blank'
+              to='https://t.me/+lCxBNCrBuNRiNmZh'
+              className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'
+            >
               <img src={TelegramIcon} alt='telegram' className='mr-6' />
               <span className='mr-4'>Telegram</span>
-              <a target='_blank' href='https://t.me/+lCxBNCrBuNRiNmZh'>
-                <img src={LinkIcon} alt='link' className='w-8 h-8' />
-              </a>
-            </div>
+              {/* <a target='_blank' href='https://t.me/+lCxBNCrBuNRiNmZh'> */}
+              <img src={LinkIcon} alt='link' className='w-8 h-8' />
+              {/* </a> */}
+            </Link>
             {/* <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
               <img src={DiscordIcon} alt='twitter' className='mr-5' />
               <span className='mr-4'>Discord</span>
@@ -164,20 +172,28 @@ const Footer = () => {
                 <img src={LinkIcon} alt='link' className='w-8 h-8' />
               </a>
             </div> */}
-            <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
+            <Link
+              target='_blank'
+              to='https://medium.com/@teamdefi.gold'
+              className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'
+            >
               <img src={MediumIcon} alt='medium' className='mr-4' />
               <span className='mr-4'>Medium</span>
-              <a target='_blank' href='https://medium.com/@teamdefi.gold'>
-                <img src={LinkIcon} alt='link' className='w-8 h-8' />
-              </a>
-            </div>
-            <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
+              {/* <a target='_blank' href='https://medium.com/@teamdefi.gold'> */}
+              <img src={LinkIcon} alt='link' className='w-8 h-8' />
+              {/* </a> */}
+            </Link>
+            <Link
+              target='_blank'
+              to='https://zealy.io/cw/defigoldtoken'
+              className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'
+            >
               <img src={MediumIcon} alt='zealy' className='mr-4' />
               <span className='mr-4'>Zealy</span>
-              <a target='_blank' href='https://zealy.io/cw/defigoldtoken'>
-                <img src={LinkIcon} alt='link' className='w-8 h-8' />
-              </a>
-            </div>
+              {/* <a target='_blank' href='https://zealy.io/cw/defigoldtoken'> */}
+              <img src={LinkIcon} alt='link' className='w-8 h-8' />
+              {/* </a> */}
+            </Link>
             {/* <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
               <img src={GithubIcon} alt='twitter' className='mr-6' />
               <span className='mr-4'>Github</span>
