@@ -48,8 +48,7 @@ const Home = () => {
     >
       <div className='h-[80px] lg:h-10 w-52 lg:w-full text-center'>
         <span className='z-10 text-gold font-sfui text-center mb-5 lg:text-[32px] lg:leading-10 w-52 lg:w-full text-lg leading-5'>
-          {text}
-          <Cursor />
+          One Stop Shop for Bitcoin NFTs
         </span>
       </div>
       <span className='z-10 font-teko font-light text-center mb-5 w-full lg:w-[1000px] text-7xl leading-[60px] lg:text-[168px] lg:leading-[152px]'>
