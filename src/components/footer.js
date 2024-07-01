@@ -137,8 +137,8 @@ const Footer = () => {
             </span>
             {/* <span>Help Center</span> */}
             <Link to='https://defi.gold'>About Us</Link>
-            <span>Terms & Conditions</span>
-            <span>Privacy Policy</span>
+            <Link to='/terms'>Terms & Conditions</Link>
+            <Link to='/policy'>Privacy Policy</Link>
           </div>
           <div className='flex flex-col flex-1 gap-8 mx-auto text-center'>
             <span className='pb-2 text-gold text-[40px] leading-9'>

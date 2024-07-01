@@ -16,6 +16,8 @@ import Mint from './pages/mint';
 import Explorer from './pages/explorer';
 import ScrollToTopButton from './components/scroll';
 import Soon from './pages/soon';
+import Terms from './pages/terms';
+import Policy from './pages/policy';
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -96,6 +98,8 @@ function App() {
               />
               <Route path='/explorer' element={<Explorer />} />
               <Route path='/collections' element={<Soon />} />
+              <Route path='/terms' element={<Terms />} />
+              <Route path='/policy' element={<Policy />} />
             </Routes>
           )}
           <Footer />
