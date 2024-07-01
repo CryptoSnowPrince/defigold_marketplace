@@ -106,7 +106,7 @@ export const MIN_WALLET_SATS = 40000;
 
 export const MINT_PAY_SATS = 4000; // TODO gas fee control
 
-export const FEE_PER_UTXO_SATS = 1500; // TODO gas fee control
+export const FEE_PER_UTXO_SATS = 300; // TODO gas fee control
 
 export const FEE_SATS = 4500; // TODO gas fee control
 
