@@ -105,7 +105,7 @@ const Home = () => {
           <span className='mr-1'>{bannerText.repeat(8)}</span>
         </div>
       </div> */}
-      <div className='marquee'>
+      <div className='marquee text-5xl leading-[45px] text-dark-text'>
         <div className='marquee-content'>
           <span className='mr-1'>{bannerText.repeat(8)}</span>
           <span className='mr-1'>{bannerText.repeat(8)}</span>
