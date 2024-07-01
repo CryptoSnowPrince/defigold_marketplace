@@ -250,7 +250,7 @@ const Mint = ({ setWalletPanel }) => {
   return (
     <div className='lg:py-60 py-28 xl:px-56 px-5 lg:px-28 flex flex-col'>
       <span className='font-sfui text-white text-center lg:text-6xl font-bold text-xl'>
-        Mint your own digital artifact on bitcoin network
+        Mint your NFT
       </span>
       <div className='flex flex-row font-sfui mt-12 rounded-lg gap-6'>
         <div className='flex flex-col flex-1 bg-primary rounded-lg px-4 py-6 gap-6 border border-gray-700'>
@@ -299,7 +299,7 @@ const Mint = ({ setWalletPanel }) => {
             <input
               type='number'
               name='feeRate'
-              className='form-control p-2 rounded-md border border-gray-700 focus:border-gray-700 active:border-gray-700'
+              className='form-control p-2 rounded-md border bg-dark-text border-gray-700 focus:border-gray-700 active:border-gray-700'
               min={feeData.minimumFee}
               max={feeData.fastestFee + FEE_DELTA}
               disabled={pendingInscribe || pendingEstimate}

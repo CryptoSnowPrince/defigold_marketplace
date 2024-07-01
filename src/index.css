@@ -410,6 +410,9 @@ li::marker {
 
 .btn-sm:hover {
   background: var(--gold);
+  > div > div > a > p {
+    color: white;
+  }
 }
 
 .mini-button {
