@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../assets/img/sm_Logo.svg';
 import union from '../assets/img/Union.png';
 
@@ -9,7 +10,9 @@ const Navbar = ({ showNavbar, modifyNavbar }) => {
       } overflow-hidden bg-primary`}
     >
       <div className='flex flex-row justify-between items-center h-16 px-5 py-2.5'>
-        <img src={logo} alt='logo' className='w-[34px] h-[42px]' />
+        <Link to='https://defi.gold'>
+          <img src={logo} alt='logo' className='w-[34px] h-[42px]' />
+        </Link>
         <div className='flex flex-row gap-5 h-full items-center'>
           <button className='bg-gold h-full font-sfui font-bold text-sm leading-[14px] px-6 rounded text-dark-text'>
             PRESENTATION
@@ -30,9 +33,9 @@ const Navbar = ({ showNavbar, modifyNavbar }) => {
           <a href='#' className='nav-item' onClick={modifyNavbar}>
             Collections
           </a>
-          <a href='#' className='nav-item' onClick={modifyNavbar}>
+          {/* <a href='#' className='nav-item' onClick={modifyNavbar}>
             Launchpad
-          </a>
+          </a> */}
           <a href='/mint' className='nav-item' onClick={modifyNavbar}>
             Mint
           </a>

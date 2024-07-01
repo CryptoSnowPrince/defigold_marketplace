@@ -73,10 +73,10 @@ export const WALLETS = [
     name: 'Leather',
     icon: '/assets/images/wallet/leather.png',
   },
-  {
-    name: 'Alby',
-    icon: '/assets/images/wallet/alby.png',
-  },
+  // {
+  //   name: 'Alby',
+  //   icon: '/assets/images/wallet/alby.png',
+  // },
 ];
 
 export const NET_TYPE_MAIN = 'mainnet';

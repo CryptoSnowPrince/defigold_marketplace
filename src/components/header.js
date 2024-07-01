@@ -3,6 +3,8 @@ import Logo from '../assets/img/Logo.svg';
 import sLogo from '../assets/img/sm_Logo.svg';
 import { GlobalContext } from './../context/globalContext';
 import { getAddressInfoByUnisat } from '../utils/utils';
+import { Link } from 'react-router-dom';
+import { NETWORK, NET_TYPE_TEST } from '../utils/constants';
 
 const Header = ({ visibility, setNavbar, setWalletPanel }) => {
   const { connected, paymentAddress } = useContext(GlobalContext);
@@ -27,9 +29,18 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
 
   return (
     <>
+      {NETWORK === NET_TYPE_TEST && (
+        <div className='flex w-screen items-center'>
+          <span className='bg-gold w-full text-dark-text pt-1 text-center'>
+            TEST Mode
+          </span>
+        </div>
+      )}
       <div className='w-screen fixed bg-dark-text z-[40] hidden lg:flex flex-row items-center justify-between h-36 pt-[72px] pb-8 xl:px-8 px-[69px]'>
         <div className='flex flex-row pl-6 xl:pl-10 items-center'>
-          <img src={Logo} className='w-48' alt='logo' />
+          <Link to='https://defi.gold'>
+            <img src={Logo} className='w-48' alt='logo' />
+          </Link>
         </div>
         <div className='flex flex-row flex-1 items-center justify-around xl:justify-center xl:gap-16'>
           <span>
@@ -47,11 +58,11 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
               Collections
             </a>
           </span>
-          <span>
+          {/* <span>
             <a href='#' className='text-4xl font-medium'>
               Launchpad
             </a>
-          </span>
+          </span> */}
           <span>
             <a href='/mint' className='text-4xl font-medium'>
               Mint

@@ -14,6 +14,7 @@ import Profile from './pages/profile';
 import Footer from './components/footer';
 import Mint from './pages/mint';
 import Explorer from './pages/explorer';
+import ScrollToTopButton from './components/scroll';
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -96,6 +97,7 @@ function App() {
             </Routes>
           )}
           <Footer />
+          <ScrollToTopButton />
         </div>
       </Router>
       <ToastContainer />

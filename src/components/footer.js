@@ -6,6 +6,7 @@ import GithubIcon from '../assets/img/github.png';
 import LinkIcon from '../assets/img/link.svg';
 import Logo from '../assets/img/Logo.svg';
 import GoldArrow from '../assets/img/gold-arrow.svg';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -111,9 +112,11 @@ const Footer = () => {
       </div>
       <div className='hidden lg:flex flex-row pt-20 px-48 gap-44 pb-9'>
         <div className='flex flex-col px-3 gap-8 w-[390px]'>
-          <img src={Logo} alt='logo' className='h-[120px]' />
+          <Link to='https://defi.gold'>
+            <img src={Logo} alt='logo' className='h-[120px]' />
+          </Link>
           <p className='font-sfui text-2xl text-base-text'>
-            The most secure, transparent and decentralized Taproot asset
+            The most secure, transparent and decentralized Bitcoin NFT
             marketplace. Discover and collect digital artifacts!
           </p>
         </div>
@@ -183,7 +186,7 @@ const Footer = () => {
         style={{ borderColor: 'rgb(248, 248, 248, 0.1)' }}
       ></div>
       <span className='text-center text-hint-text text-base leading-5 font-sfui py-5'>
-        Copyright © 2024 DeFi.Gold. All rights reserved
+        © 2024 DG Labs Ltd. All rights reserved
       </span>
     </div>
   );

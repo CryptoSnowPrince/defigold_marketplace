@@ -13,6 +13,7 @@ import AnimLine from '../assets/img/animated_lines.png';
 import ExAnimLine from '../assets/img/ex_animated_lines.png';
 import Card from './card';
 import { getList } from './../utils/utils';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [text, count] = useTypewriter({
@@ -54,12 +55,18 @@ const Home = () => {
         Secure Digital Artifacts Marketplace
       </span>
       <div className='z-10 flex flex-row gap-6 mb-5 text-sm leading-[14px] lg:text-lg lg:leading-[18px]'>
-        <button className='flex-1 font-sfui w-32 lg:w-44 py-2 font-medium bg-gold rounded text-dark-text'>
+        <Link
+          to='/explorer'
+          className='flex-1 text-center font-sfui w-32 lg:w-44 py-2 font-bold pt-2.5 bg-gold rounded text-dark-text'
+        >
           Start Collecting
-        </button>
-        <button className='flex-1 font-sfui w-32 lg:w-44 py-2 text-base-text font-medium bg-transparent border-2 border-gold rounded'>
+        </Link>
+        <Link
+          to='/mint'
+          className='flex-1 text-center font-sfui w-32 lg:w-44 py-2 text-base-text font-medium bg-transparent border-2 border-gold rounded'
+        >
           Mint BTC NFT
-        </button>
+        </Link>
       </div>
       <img
         src={banner}
@@ -69,9 +76,9 @@ const Home = () => {
       <Zoom duration={2000} triggerOnce={false}>
         <div className='z-10 flex flex-col py-28 w-screen'>
           <span className='section-title px-5 pb-5 lg:pb-16'>
-            Sponsored Taproot Asset
+            Sponsored NFTs
           </span>
-          <div className='grid lg:grid-cols-4 grid-cols-2 lg:gap-16 gap-4 m-auto'>
+          <div className='grid lg:grid-cols-4 grid-cols-2 lg:gap-16 gap-4 m-auto justify-items-center'>
             {tradeInscriptions && tradeInscriptions.length > 0 ? (
               tradeInscriptions.map((item, index) => {
                 return (

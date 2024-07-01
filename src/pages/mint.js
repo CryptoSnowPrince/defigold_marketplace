@@ -247,7 +247,7 @@ const Mint = ({ setWalletPanel }) => {
       <div className='flex flex-row font-sfui mt-12 rounded-lg gap-6'>
         <div className='flex flex-col flex-1 bg-primary rounded-lg px-4 py-6 gap-6 border border-gray-700'>
           <div className='flex flex-col gap-1'>
-            <span className=''>Upload your atifact</span>
+            <span className=''>Upload your artifact</span>
             <div className='relative flex flex-col py-6 items-center text-center rounded-xl border-2 border-gray-700 gap-4 cursor-pointer'>
               <div className='bg-dark-box p-2 rounded-full flex justify-center items-center'>
                 <ArrowUpTrayIcon class='h-6 w-6 text-gray-500' />
