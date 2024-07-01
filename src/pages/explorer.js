@@ -19,9 +19,11 @@ const Explorer = () => {
   }, []);
 
   const keywordUpdated = (e) => {
-    const newList = listedData.filter((item) =>
-      item.inscriptionNumber.toString().includes(e.target.value)
-    );
+    let prefix = 'Inscription #';
+    const newList = listedData.filter((item) => {
+      const temp = prefix + item.inscriptionNumber.toString();
+      if (temp.toLowerCase().includes(e.target.value)) return item;
+    });
     setFilteredList(newList);
   };
 
@@ -29,7 +31,7 @@ const Explorer = () => {
     <div className='flex flex-col lg:py-60 py-28 xl:px-56 px-5 lg:px-28'>
       <div className='flex flex-col pt-10 pb-20 gap-4 justify-center items-center relative'>
         <span className='font-sfui text-white text-center lg:text-6xl font-bold text-xl'>
-          Taproot Asset Explorer
+          NFT Explorer
         </span>
         <span className='font-sfui text-hint-text text-center'>
           Trade your NFT in a trusted marketplace.

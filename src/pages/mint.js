@@ -307,7 +307,7 @@ const Mint = ({ setWalletPanel }) => {
             </span>
             <small className='text-danger text-red-600'>{error.feeRate}</small>
           </div>
-          <div className='flex flex-row px-4 gap-8'>
+          <div className='flex flex-row px-4 gap-8 justify-center'>
             {!connected ? (
               <button
                 className='bg-gold w-full text-dark-text font-sfui text-sm lg:text-lg py-2 rounded-lg flex gap-2 justify-center items-center'
@@ -324,14 +324,7 @@ const Mint = ({ setWalletPanel }) => {
                 {pendingEstimate ? `Estimating...` : `Estimate`}
               </button>
             )}
-            {!connected ? (
-              <button
-                className='bg-gold w-full text-dark-text font-sfui text-sm lg:text-lg py-2 rounded-lg flex gap-2 justify-center items-center'
-                onClick={setWalletPanel}
-              >
-                CONNECT WALLET
-              </button>
-            ) : (
+            {connected && (
               <button
                 className='w-full bg-gold text-dark-text font-sfui text-sm lg:text-lg py-2 rounded-lg flex gap-2 justify-center items-center'
                 disabled={pendingInscribe || pendingEstimate}

@@ -57,7 +57,7 @@ const Home = () => {
       </span>
       <div className='z-10 flex flex-row gap-6 mb-5 text-sm leading-[14px] lg:text-lg lg:leading-[18px]'>
         <Link
-          to='/explorer'
+          to='/collections'
           className='flex-1 text-center font-sfui w-32 lg:w-44 py-2 font-bold pt-2.5 bg-gold rounded text-dark-text'
         >
           Start Collecting
@@ -100,7 +100,13 @@ const Home = () => {
           </div>
         </div>
       </Zoom>
-      <div className='marquee text-5xl leading-[45px] text-dark-text'>
+      {/* <div className='marquee text-5xl leading-[45px] text-dark-text'>
+        <div className='marquee-content'>
+          <span className='mr-1'>{bannerText.repeat(8)}</span>
+          <span className='mr-1'>{bannerText.repeat(8)}</span>
+        </div>
+      </div> */}
+      <div className='marquee'>
         <div className='marquee-content'>
           <span className='mr-1'>{bannerText.repeat(8)}</span>
           <span className='mr-1'>{bannerText.repeat(8)}</span>

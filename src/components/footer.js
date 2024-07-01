@@ -83,8 +83,8 @@ const Footer = () => {
           <span className='text-gold font-teko text-[30px] leading-7 pb-1'>
             Resources
           </span>
-          <span>Help Center</span>
-          <span>About Us</span>
+          {/* <span>Help Center</span> */}
+          <Link to='https://defi.gold'>About Us</Link>
           <span>Terms & Conditions</span>
           <span>Privacy Policy</span>
         </div>

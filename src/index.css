@@ -137,7 +137,7 @@ li::marker {
   display: none;
 }
 
-.marquee {
+/* .marquee {
   position: relative;
   overflow: hidden;
   white-space: nowrap;
@@ -156,6 +156,35 @@ li::marker {
 .marquee-content span {
   flex-shrink: 0;
   white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+} */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  background: var(--gold);
+  padding: 10px 0;
+  width: 100%;
+}
+
+.marquee-content {
+  display: flex;
+  width: 200%; /* Double the width to accommodate repeated text */
+  animation: marquee 20s linear infinite; /* Adjust animation duration and timing function as needed */
+}
+
+.marquee-content span {
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-right: -4px; /* Adjust negative margin to remove space between spans */
 }
 
 @keyframes marquee {
