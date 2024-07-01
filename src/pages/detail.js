@@ -82,6 +82,10 @@ const Detail = ({ setWalletPanel }) => {
       setLoadedData(true);
     };
     fetchData();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }, [resId, navigate]);
 
   return (

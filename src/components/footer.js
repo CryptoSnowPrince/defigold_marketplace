@@ -185,7 +185,7 @@ const Footer = () => {
             </Link>
             <Link
               target='_blank'
-              to='https://zealy.io/cw/defigoldtoken'
+              to='https://zealy.io/cw/defigoldtoken/questboard'
               className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'
             >
               <img src={MediumIcon} alt='zealy' className='mr-4' />

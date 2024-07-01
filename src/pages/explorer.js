@@ -16,6 +16,10 @@ const Explorer = () => {
       setLoaded(true);
     };
     fetchData();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }, []);
 
   const keywordUpdated = (e) => {

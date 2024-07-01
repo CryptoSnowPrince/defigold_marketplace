@@ -1,6 +1,13 @@
+import { useEffect } from 'react';
 import banner from '../assets/img/home-banner.png';
 
 const Soon = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
   return (
     <div className='w-screen h-[80vh] lg:h-[90vh] flex flex-col justify-center items-center relative'>
       <h1 className='text-4xl lg:text-9xl'>Coming Soon</h1>

@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { useContext, useState } from 'react';
-import { ArrowUpTrayIcon } from '@heroicons/react/24/outline';
+import { useContext, useEffect, useState } from 'react';
+import { ArrowUpTrayIcon, EyeIcon } from '@heroicons/react/24/outline';
+
 import {
   API_PATH,
   SUCCESS,
@@ -29,6 +30,13 @@ const Mint = ({ setWalletPanel }) => {
   const [estimateFeeSats, setEstimateFeeSats] = useState(0);
   const [value, setValue] = useState({ feeRate: '' });
   const [error, setError] = useState({});
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
 
   const checkValidation = (input, inputValue) => {
     let terror = 0;
@@ -273,7 +281,10 @@ const Mint = ({ setWalletPanel }) => {
           </div>
           <div className='block lg:hidden bg-dark-box border border-gray-700 rounded-lg p-4'>
             {!previewUrl ? (
-              <div className='product-card-media'></div>
+              <div className='flex flex-col justify-center items-center'>
+                <span className='text-3xl'>Preview NFT</span>
+                <EyeIcon className='h-6 w-6 text-gray-500' />
+              </div>
             ) : (
               <img
                 className='rounded-lg w-full h-full'
@@ -335,9 +346,12 @@ const Mint = ({ setWalletPanel }) => {
             )}
           </div>
         </div>
-        <div className='hidden lg:flex flex-[0.5] bg-dark-box border border-gray-700 rounded-lg p-4'>
+        <div className='hidden lg:flex flex-[0.5] bg-dark-box border border-gray-700 rounded-lg p-4 justify-center'>
           {!previewUrl ? (
-            <div className='product-card-media'></div>
+            <div className='flex flex-col justify-center items-center'>
+              <span className='text-3xl'>Preview NFT</span>
+              <EyeIcon className='h-8 w-8 text-gray-500' />
+            </div>
           ) : (
             <img
               className='rounded-lg w-full h-full'
