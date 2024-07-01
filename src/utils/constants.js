@@ -104,7 +104,11 @@ export const SPLIT_SIZE = 600;
 
 export const MIN_WALLET_SATS = 40000;
 
-export const FEE_SATS = 2500; // TODO gas fee control
+export const MINT_PAY_SATS = 4000; // TODO gas fee control
+
+export const FEE_PER_UTXO_SATS = 1500; // TODO gas fee control
+
+export const FEE_SATS = 4500; // TODO gas fee control
 
 export const UNISAT_API_KEY_0 =
   '6231ea23b9fbb7a17dd49df9d88ba6686cbbd639a73160cf358bf2e1fdc07b1a'; // cryptosnowprince
@@ -122,7 +126,7 @@ export function RELEASE(param1, param2, ...param3) {
 }
 export const DEBUG = console.log;
 
-export const API_PATH = 'https://staging.defi.gold/api';
+export const API_PATH = 'https://nft.defi.gold/api';
 
 /******************************************/
 export const NETWORK = NET_TYPE_TEST; // TODO
@@ -151,7 +155,7 @@ export const MEMPOOL_URL = `https://mempool.space${
   NETWORK === NET_TYPE_TEST ? '/testnet' : ''
 }`;
 export const ORDINALS_URL = `https://${
-  NETWORK === NET_TYPE_TEST ? 't' : 'ord'
-}.dgold.metabest.tech`;
+  NETWORK === NET_TYPE_TEST ? 'testnet.' : ''
+}scan.defi.gold`;
 
 export const RUN_MODE = DEBUG;

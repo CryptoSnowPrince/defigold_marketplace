@@ -32,6 +32,8 @@ import {
   MIN_WALLET_SATS,
   ADDR_TYPE_PKH,
   MEMPOOL_URL,
+  MINT_PAY_SATS,
+  FEE_PER_UTXO_SATS,
 } from '../utils/constants';
 import {
   getAddressInfoByUnisat,
@@ -432,7 +434,7 @@ export function useGlobalContext() {
 
       let idx = 0;
       let curTotal = 0;
-      while (satoshis + 500 > curTotal) {
+      while (satoshis + MINT_PAY_SATS > curTotal) {
         // TODO gas fee control
         if (isOwnerOfUtxo(allUtxos, payableUtxos[idx])) {
           const input = await getPsbtInput(
@@ -452,7 +454,7 @@ export function useGlobalContext() {
       });
       psbt.addOutput({
         address: paymentAddress.address,
-        value: curTotal - satoshis - 500, // TODO gas fee control
+        value: curTotal - satoshis - MINT_PAY_SATS, // TODO gas fee control
       });
       const tx = psbt.toHex();
 
@@ -1129,7 +1131,7 @@ export function useGlobalContext() {
         let idx2 = 0;
         let totalPaySat = 0;
         while (
-          (idx2 + 1) * 200 * feeData.fastestFee +
+          (idx2 + 1) * FEE_PER_UTXO_SATS * feeData.fastestFee +
             sellData.price +
             FEE_SATS +
             sellData.satoshi >
@@ -1168,7 +1170,7 @@ export function useGlobalContext() {
             sellData.price -
             sellData.satoshi -
             FEE_SATS -
-            idx2 * 200 * feeData.fastestFee, // TODO gas fee control
+            idx2 * FEE_PER_UTXO_SATS * feeData.fastestFee, // TODO gas fee control
         });
 
         const sellerSignedPsbt = Psbt.fromHex(sellData.psbt, { network });
