@@ -123,7 +123,7 @@ const WalletModal = ({ visible, setVisible }) => {
                             />
                           </span>
                         </p>
-                        <p className='ps-3 mb-0'>{`${(
+                        <p className='ps-3 mb-0 text-gold'>{`${(
                           satBalance / 100_000_000
                         ).toFixed(5)} BTC`}</p>
                       </div>

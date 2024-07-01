@@ -413,6 +413,9 @@ li::marker {
   > div > div > a > p {
     color: white;
   }
+  > div > div > p {
+    color: white;
+  }
 }
 
 .mini-button {

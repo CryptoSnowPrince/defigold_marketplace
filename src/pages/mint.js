@@ -253,7 +253,7 @@ const Mint = ({ setWalletPanel }) => {
         Mint your NFT
       </span>
       <div className='flex flex-row font-sfui mt-12 rounded-lg gap-6'>
-        <div className='flex flex-col flex-1 bg-primary rounded-lg px-4 py-6 gap-6 border border-gray-700'>
+        <div className='flex flex-col h-fit flex-1 bg-primary rounded-lg px-4 py-6 gap-6 border border-gray-700'>
           <div className='flex flex-col gap-1'>
             <span className=''>Upload your artifact</span>
             <div className='relative flex flex-col py-6 items-center text-center rounded-xl border-2 border-gray-700 gap-4 cursor-pointer'>
@@ -341,25 +341,48 @@ const Mint = ({ setWalletPanel }) => {
                 disabled={pendingInscribe || pendingEstimate}
                 onClick={(e) => handleMint(e)}
               >
-                {pendingInscribe ? `Inscribing Now...` : `Mint Now`}
+                {pendingInscribe ? `Minting Now...` : `Mint Now`}
               </button>
             )}
           </div>
         </div>
-        <div className='hidden lg:flex flex-[0.5] bg-dark-box border border-gray-700 rounded-lg p-4 justify-center'>
-          {!previewUrl ? (
-            <div className='flex flex-col justify-center items-center'>
-              <span className='text-3xl'>Preview NFT</span>
-              <EyeIcon className='h-8 w-8 text-gray-500' />
+        <div className='flex flex-[0.5] flex-col gap-2'>
+          <div className='hidden lg:flex bg-dark-box border border-gray-700 rounded-lg p-4 justify-center'>
+            {!previewUrl ? (
+              <div className='flex flex-col justify-center items-center'>
+                <span className='text-3xl'>Preview NFT</span>
+                <EyeIcon className='h-8 w-8 text-gray-500' />
+              </div>
+            ) : (
+              <img
+                className='rounded-lg w-full h-full'
+                src={previewUrl}
+                title=''
+                alt=''
+              />
+            )}
+          </div>
+          <br />
+          <div className='flex flex-col bg-dark-box border border-gray-700 rounded-lg p-4'>
+            <div className='flex justify-between'>
+              <span className='font-sfui'>Mint Fee:</span>
+              <span className='font-sfui'>{`${estimateFeeSats} sats`}</span>
             </div>
-          ) : (
-            <img
-              className='rounded-lg w-full h-full'
-              src={previewUrl}
-              title=''
-              alt=''
-            />
-          )}
+            <div className='flex justify-between'>
+              <span className='font-sfui'>Output UTXO:</span>
+              <span className='font-sfui'>{`${OUTPUT_UTXO} sats`}</span>
+            </div>
+            <div className='flex justify-between'>
+              <span className='font-sfui'>Service Fee:</span>
+              <span className='font-sfui'>{`${SERVICE_FEE} sats`}</span>
+            </div>
+            <div className='flex justify-between'>
+              <span className='font-sfui'>Total as Sats:</span>
+              <span className='font-sfui'>{`${
+                estimateFeeSats + OUTPUT_UTXO + SERVICE_FEE
+              } sats`}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
