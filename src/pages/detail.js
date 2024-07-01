@@ -152,7 +152,7 @@ const Detail = ({ setWalletPanel }) => {
                 assetInfo.address === ordinalsAddress.address &&
                 assetInfo.price && (
                   <button
-                    className='bg-gold w-full text-dark-text font-sfui text-lg py-2 rounded-lg flex gap-2 justify-center items-center'
+                    className='bg-gold w-full text-dark-text font-sfui text-lg mt-2 py-2 rounded-lg flex gap-2 justify-center items-center'
                     onClick={() =>
                       delistInscription(assetInfo, 999_000_000_000_000)
                     }

@@ -44,7 +44,7 @@ const Explore = () => {
           <span className='flex pb-5 lg:pb-12 lg:justify-center section-title'>
             Explore NFTs
           </span>
-          <div className='hidden lg:flex flex-row w-full gap-2.5 pb-[30px] lg:gap-8 lg:pb-[60px] justify-center'>
+          {/* <div className='hidden lg:flex flex-row w-full gap-2.5 pb-[30px] lg:gap-8 lg:pb-[60px] justify-center'>
             <button
               className='explore-tag-item'
               onClick={() => setFilter('Art')}
@@ -140,7 +140,7 @@ const Explore = () => {
                 </button>
               </div>
             )}
-          </div>
+          </div> */}
           {/* <div className='grid lg:grid-cols-4 grid-cols-2 lg:gap-16 gap-4 m-auto'></div> */}
           <div className='grid lg:grid-cols-4 grid-cols-2 pb-[55px] lg:gap-16 lg:pb-[405px] gap-4 mx-auto justify-center'>
             {listedData && listedData.length > 0 ? (

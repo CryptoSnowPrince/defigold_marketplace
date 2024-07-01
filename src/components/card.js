@@ -18,7 +18,7 @@ const Card = ({ resId, resNumber, address, price, isOwner }) => {
           />
         </Link>
         <span className='pl-1 text-lg leading-4 lg:text-4xl lg:leading-8 text-white pb-2 lg:pb-4'>
-          {`Taproot Asset #${resNumber}`}
+          {`Inscription #${resNumber}`}
         </span>
         {isOwner ? (
           <Link

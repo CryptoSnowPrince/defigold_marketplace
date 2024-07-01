@@ -149,7 +149,7 @@ li::marker {
 
 .marquee-content {
   display: flex;
-  width: 200%; /* This ensures it covers at least twice the screen width */
+  width: 200%;
   animation: marquee 20s linear infinite;
 }
 
@@ -158,13 +158,12 @@ li::marker {
   white-space: nowrap;
 }
 
-/* Keyframes for the scrolling effect */
 @keyframes marquee {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
 
