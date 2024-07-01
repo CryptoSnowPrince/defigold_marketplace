@@ -30,7 +30,7 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
   return (
     <>
       {NETWORK === NET_TYPE_TEST && (
-        <div className='flex w-screen items-center'>
+        <div className='flex w-screen items-center fixed z-[45]'>
           <span className='bg-gold w-full text-dark-text pt-1 text-center'>
             TEST Mode
           </span>
@@ -54,7 +54,7 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
             </a>
           </span>
           <span>
-            <a href='#' className='text-4xl leading-8 font-medium'>
+            <a href='/collections' className='text-4xl leading-8 font-medium'>
               Collections
             </a>
           </span>
@@ -78,8 +78,13 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
             : `CONNECT WALLET`}
         </button>
       </div>
-      <div
+      {/* <div
         className={`w-screen fixed z-[40] bg-dark-text flex flex-row lg:hidden justify-between items-center h-16 px-5 py-2.5${
+          visibility && ' hidden'
+        }`}
+      > */}
+      <div
+        className={`w-screen fixed z-[40] bg-dark-text flex flex-row lg:hidden justify-between items-center h-24 px-5 pt-8 pb-2.5${
           visibility && ' hidden'
         }`}
       >

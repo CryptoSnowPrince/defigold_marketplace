@@ -15,6 +15,7 @@ import Footer from './components/footer';
 import Mint from './pages/mint';
 import Explorer from './pages/explorer';
 import ScrollToTopButton from './components/scroll';
+import Soon from './pages/soon';
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -94,6 +95,7 @@ function App() {
                 element={<Mint setWalletPanel={modifyWalletPanel} />}
               />
               <Route path='/explorer' element={<Explorer />} />
+              <Route path='/collections' element={<Soon />} />
             </Routes>
           )}
           <Footer />

@@ -13,7 +13,7 @@ const Card = ({ resId, resNumber, address, price, isOwner }) => {
         <Link to={`${ORDINALS_URL}/inscription/${resId}`} target='_blank'>
           <img
             src={`${ORDINALS_URL}/content/${resId}`}
-            className='w-[140px] h-[140px] lg:w-[280px] lg:h-[280px] pb-[14px] lg:pb-7 rounded-md'
+            className='product-img w-[140px] h-[140px] lg:w-[280px] lg:h-[280px] pb-[14px] lg:pb-7 rounded-md'
             alt='tap_asset'
           />
         </Link>

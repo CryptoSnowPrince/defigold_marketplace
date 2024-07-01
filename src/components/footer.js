@@ -62,14 +62,14 @@ const Footer = () => {
           </a>
         </div> */}
       </div>
-      <div className='flex flex-col gap-6 lg:hidden py-9 text-center font-sfui'>
+      <div className='flex flex-col gap-6 md:hidden py-9 text-center font-sfui'>
         <img src={Logo} alt='logo' className='w-3/5 m-auto' />
         <span className='px-10 text-base-text text-base leading-5'>
           The most secure, transparent and decentralized Taproot asset
           marketplace. Discover and collect digital artifacts!
         </span>
       </div>
-      <div className='grid grid-cols-2 lg:hidden py-9 font-sfui'>
+      <div className='grid grid-cols-2 md:hidden py-9 font-sfui'>
         <div className='flex flex-col justify-start mx-auto gap-2.5 text-base-text text-lg leading-6'>
           <span className='text-gold font-teko text-[30px] leading-7 pb-1'>
             Marketplace
@@ -89,7 +89,7 @@ const Footer = () => {
           <span>Privacy Policy</span>
         </div>
       </div>
-      <div className='hidden lg:flex flex-col pt-16'>
+      <div className='hidden md:flex flex-col pt-16'>
         <div className='flex flex-row px-[250px] py-5 justify-between items-center'>
           <span className='text-gold font-sfui font-semibold text-2xl leading-7'>
             Subscribe for News, Updates and Articles
@@ -110,7 +110,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className='hidden lg:flex flex-row pt-20 px-48 gap-44 pb-9'>
+      <div className='hidden md:flex flex-row pt-20 px-12 gap-12 pb-9'>
         <div className='flex flex-col px-3 gap-8 w-[390px]'>
           <Link to='https://defi.gold'>
             <img src={Logo} alt='logo' className='h-[120px]' />
@@ -121,7 +121,7 @@ const Footer = () => {
           </p>
         </div>
         <div className='flex flex-row flex-1'>
-          <div className='flex flex-col flex-1 mx-auto gap-7 text-2xl'>
+          <div className='flex flex-col flex-1 mx-auto gap-7 text-2xl text-center'>
             <span className='text-gold font-teko text-[40px] leading-9 pb-3'>
               Marketplace
             </span>
@@ -130,7 +130,7 @@ const Footer = () => {
             <span>Launchpad</span>
             <span>Mint</span>
           </div>
-          <div className='flex flex-col flex-1 mx-auto gap-7 text-2xl'>
+          <div className='flex flex-col flex-1 mx-auto gap-7 text-2xl text-center'>
             <span className='text-gold font-teko text-[40px] leading-9 pb-3'>
               Resources
             </span>
@@ -139,45 +139,52 @@ const Footer = () => {
             <span>Terms & Conditions</span>
             <span>Privacy Policy</span>
           </div>
-          <div className='flex flex-col flex-1 gap-8 mx-auto'>
+          <div className='flex flex-col flex-1 gap-8 mx-auto text-center'>
             <span className='pb-2 text-gold text-[40px] leading-9'>
               Join Us
             </span>
-            <div className='flex flex-row items-center text-base-text text-4xl leading-8'>
+            <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
               <img src={XIcon} alt='twitter' className='mr-7' />
               <span className='mr-4'>X</span>
-              <a target='_blank' href='#'>
+              <a target='_blank' href='https://twitter.com/TeamDefiGold'>
                 <img src={LinkIcon} alt='link' className='w-8 h-8' />
               </a>
             </div>
-            <div className='flex flex-row items-center text-base-text text-4xl leading-8'>
-              <img src={TelegramIcon} alt='twitter' className='mr-6' />
+            <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
+              <img src={TelegramIcon} alt='telegram' className='mr-6' />
               <span className='mr-4'>Telegram</span>
-              <a target='_blank' href='#'>
+              <a target='_blank' href='https://t.me/+lCxBNCrBuNRiNmZh'>
                 <img src={LinkIcon} alt='link' className='w-8 h-8' />
               </a>
             </div>
-            <div className='flex flex-row items-center text-base-text text-4xl leading-8'>
+            {/* <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
               <img src={DiscordIcon} alt='twitter' className='mr-5' />
               <span className='mr-4'>Discord</span>
               <a target='_blank' href='#'>
                 <img src={LinkIcon} alt='link' className='w-8 h-8' />
               </a>
-            </div>
-            <div className='flex flex-row items-center text-base-text text-4xl leading-8'>
-              <img src={MediumIcon} alt='twitter' className='mr-4' />
+            </div> */}
+            <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
+              <img src={MediumIcon} alt='medium' className='mr-4' />
               <span className='mr-4'>Medium</span>
-              <a target='_blank' href='#'>
+              <a target='_blank' href='https://medium.com/@teamdefi.gold'>
                 <img src={LinkIcon} alt='link' className='w-8 h-8' />
               </a>
             </div>
-            <div className='flex flex-row items-center text-base-text text-4xl leading-8'>
+            <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
+              <img src={MediumIcon} alt='zealy' className='mr-4' />
+              <span className='mr-4'>Zealy</span>
+              <a target='_blank' href='https://zealy.io/cw/defigoldtoken'>
+                <img src={LinkIcon} alt='link' className='w-8 h-8' />
+              </a>
+            </div>
+            {/* <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
               <img src={GithubIcon} alt='twitter' className='mr-6' />
               <span className='mr-4'>Github</span>
               <a target='_blank' href='#'>
                 <img src={LinkIcon} alt='link' className='w-8 h-8' />
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ const Navbar = ({ showNavbar, modifyNavbar }) => {
         showNavbar ? '-show' : ''
       } overflow-hidden bg-primary`}
     >
-      <div className='flex flex-row justify-between items-center h-16 px-5 py-2.5'>
+      <div className='flex flex-row justify-between items-center h-24 px-5 pb-2.5 pt-10'>
         <Link to='https://defi.gold'>
           <img src={logo} alt='logo' className='w-[34px] h-[42px]' />
         </Link>
@@ -30,7 +30,7 @@ const Navbar = ({ showNavbar, modifyNavbar }) => {
           <a href='/explorer' className='nav-item' onClick={modifyNavbar}>
             Explorer
           </a>
-          <a href='#' className='nav-item' onClick={modifyNavbar}>
+          <a href='/collections' className='nav-item' onClick={modifyNavbar}>
             Collections
           </a>
           {/* <a href='#' className='nav-item' onClick={modifyNavbar}>
