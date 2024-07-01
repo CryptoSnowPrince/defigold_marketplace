@@ -3,6 +3,7 @@ import TelegramIcon from '../assets/img/telegram.png';
 import DiscordIcon from '../assets/img/discord.png';
 import MediumIcon from '../assets/img/medium.png';
 import GithubIcon from '../assets/img/github.png';
+import ZealyIcon from '../assets/img/zealy.png';
 import LinkIcon from '../assets/img/link.svg';
 import Logo from '../assets/img/Logo.svg';
 import GoldArrow from '../assets/img/gold-arrow.svg';
@@ -134,8 +135,8 @@ const Footer = () => {
             <span className='text-gold font-teko text-[40px] leading-9 pb-3'>
               Resources
             </span>
-            <span>Help Center</span>
-            <span>About Us</span>
+            {/* <span>Help Center</span> */}
+            <Link to='https://defi.gold'>About Us</Link>
             <span>Terms & Conditions</span>
             <span>Privacy Policy</span>
           </div>
@@ -188,7 +189,7 @@ const Footer = () => {
               to='https://zealy.io/cw/defigoldtoken/questboard'
               className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'
             >
-              <img src={MediumIcon} alt='zealy' className='mr-4' />
+              <img src={ZealyIcon} alt='zealy' className='mr-4 w-8 h-8' />
               <span className='mr-4'>Zealy</span>
               {/* <a target='_blank' href='https://zealy.io/cw/defigoldtoken'> */}
               <img src={LinkIcon} alt='link' className='w-8 h-8' />
