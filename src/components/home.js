@@ -107,8 +107,8 @@ const Home = () => {
       </div> */}
       <div className='marquee text-5xl leading-[45px] text-dark-text'>
         <div className='marquee-content'>
-          <span className='mr-1'>{bannerText.repeat(8)}</span>
-          <span className='mr-1'>{bannerText.repeat(8)}</span>
+          <span className='mr-1'>{bannerText.repeat(20)}</span>
+          <span className='mr-1'>{bannerText.repeat(20)}</span>
         </div>
       </div>
       {/* <div className="z-10 bg-gold py-2 w-screen whitespace-nowrap box-border items-center">

@@ -137,13 +137,39 @@ li::marker {
   display: none;
 }
 
-/* .marquee {
+.marquee {
   position: relative;
   overflow: hidden;
   white-space: nowrap;
-  z-index: 10;
+  background: var(--gold); /* Example background color */
+  padding: 10px 0;
+  width: 100%;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 40s linear infinite; /* Adjust animation duration */
+}
+
+.marquee-content span {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+/*.marquee {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
   background: var(--gold);
-  padding: 0.5rem 0;
+  padding: 10px 0;
   width: 100%;
 }
 
@@ -156,6 +182,7 @@ li::marker {
 .marquee-content span {
   flex-shrink: 0;
   white-space: nowrap;
+  margin-right: -4px;
 }
 
 @keyframes marquee {
@@ -166,35 +193,6 @@ li::marker {
     transform: translateX(-100%);
   }
 } */
-.marquee {
-  position: relative;
-  overflow: hidden;
-  white-space: nowrap;
-  background: var(--gold);
-  padding: 10px 0;
-  width: 100%;
-}
-
-.marquee-content {
-  display: flex;
-  width: 200%; /* Double the width to accommodate repeated text */
-  animation: marquee 20s linear infinite; /* Adjust animation duration and timing function as needed */
-}
-
-.marquee-content span {
-  flex-shrink: 0;
-  white-space: nowrap;
-  margin-right: -4px; /* Adjust negative margin to remove space between spans */
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
 
 .explore-tag-item {
   background: var(--gold);
