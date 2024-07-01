@@ -347,7 +347,7 @@ const Mint = ({ setWalletPanel }) => {
           </div>
         </div>
         <div className='flex flex-[0.5] flex-col gap-2'>
-          <div className='hidden lg:flex bg-dark-box border border-gray-700 rounded-lg p-4 justify-center'>
+          <div className='hidden lg:flex h-full bg-dark-box border border-gray-700 rounded-lg p-4 justify-center'>
             {!previewUrl ? (
               <div className='flex flex-col justify-center items-center'>
                 <span className='text-3xl'>Preview NFT</span>
@@ -363,26 +363,28 @@ const Mint = ({ setWalletPanel }) => {
             )}
           </div>
           <br />
-          <div className='flex flex-col bg-dark-box border border-gray-700 rounded-lg p-4'>
-            <div className='flex justify-between'>
-              <span className='font-sfui'>Mint Fee:</span>
-              <span className='font-sfui'>{`${estimateFeeSats} sats`}</span>
+          {estimateFeeSats > 0 && (
+            <div className='flex flex-col bg-dark-box border border-gray-700 rounded-lg p-4'>
+              <div className='flex justify-between'>
+                <span className='font-sfui'>Mint Fee:</span>
+                <span className='font-sfui'>{`${estimateFeeSats} sats`}</span>
+              </div>
+              <div className='flex justify-between'>
+                <span className='font-sfui'>Output UTXO:</span>
+                <span className='font-sfui'>{`${OUTPUT_UTXO} sats`}</span>
+              </div>
+              <div className='flex justify-between'>
+                <span className='font-sfui'>Service Fee:</span>
+                <span className='font-sfui'>{`${SERVICE_FEE} sats`}</span>
+              </div>
+              <div className='flex justify-between'>
+                <span className='font-sfui'>Total as Sats:</span>
+                <span className='font-sfui'>{`${
+                  estimateFeeSats + OUTPUT_UTXO + SERVICE_FEE
+                } sats`}</span>
+              </div>
             </div>
-            <div className='flex justify-between'>
-              <span className='font-sfui'>Output UTXO:</span>
-              <span className='font-sfui'>{`${OUTPUT_UTXO} sats`}</span>
-            </div>
-            <div className='flex justify-between'>
-              <span className='font-sfui'>Service Fee:</span>
-              <span className='font-sfui'>{`${SERVICE_FEE} sats`}</span>
-            </div>
-            <div className='flex justify-between'>
-              <span className='font-sfui'>Total as Sats:</span>
-              <span className='font-sfui'>{`${
-                estimateFeeSats + OUTPUT_UTXO + SERVICE_FEE
-              } sats`}</span>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

@@ -229,7 +229,7 @@ li::marker {
 }
 
 .road-bg {
-  background-size: contain;
+  background-size: cover;
   background-image: url('assets/img/road.png');
   background-repeat: repeat-y;
 }
@@ -239,7 +239,13 @@ li::marker {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  @media only screen and (max-width: 600px) {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  #explore {
     background-size: cover;
   }
 }
