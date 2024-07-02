@@ -346,7 +346,7 @@ const Mint = ({ setWalletPanel }) => {
             )}
           </div>
         </div>
-        <div className='flex flex-[0.5] flex-col gap-2'>
+        <div className='hidden lg:flex flex-[0.5] flex-col gap-2'>
           <div className='hidden lg:flex h-full bg-dark-box border border-gray-700 rounded-lg p-4 justify-center'>
             {!previewUrl ? (
               <div className='flex flex-col justify-center items-center'>
