@@ -279,9 +279,9 @@ const Mint = ({ setWalletPanel }) => {
               />
             </div>
           </div>
-          <div className='block lg:hidden bg-dark-box border border-gray-700 rounded-lg p-4'>
+          <div className='block lg:hidden h-full bg-dark-box border border-gray-700 rounded-lg p-4'>
             {!previewUrl ? (
-              <div className='flex flex-col justify-center items-center'>
+              <div className='flex flex-col justify-center min-h-[70vw] items-center'>
                 <span className='text-3xl'>Preview NFT</span>
                 <EyeIcon className='h-6 w-6 text-gray-500' />
               </div>
@@ -318,6 +318,28 @@ const Mint = ({ setWalletPanel }) => {
             </span>
             <small className='text-danger text-red-600'>{error.feeRate}</small>
           </div>
+          {estimateFeeSats > 0 && (
+            <div className='flex lg:hidden flex-col bg-dark-box border border-gray-700 rounded-lg p-4'>
+              <div className='flex justify-between'>
+                <span className='font-sfui'>Mint Fee:</span>
+                <span className='font-sfui'>{`${estimateFeeSats} sats`}</span>
+              </div>
+              <div className='flex justify-between'>
+                <span className='font-sfui'>Output UTXO:</span>
+                <span className='font-sfui'>{`${OUTPUT_UTXO} sats`}</span>
+              </div>
+              <div className='flex justify-between'>
+                <span className='font-sfui'>Service Fee:</span>
+                <span className='font-sfui'>{`${SERVICE_FEE} sats`}</span>
+              </div>
+              <div className='flex justify-between'>
+                <span className='font-sfui'>Total as Sats:</span>
+                <span className='font-sfui'>{`${
+                  estimateFeeSats + OUTPUT_UTXO + SERVICE_FEE
+                } sats`}</span>
+              </div>
+            </div>
+          )}
           <div className='flex flex-row px-4 gap-8 justify-center'>
             {!connected ? (
               <button
