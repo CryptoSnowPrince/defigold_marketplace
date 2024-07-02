@@ -1,26 +1,23 @@
-import firstTap from "../assets/img/tap9.png";
-import secondTap from "../assets/img/tap10.png";
-import thirdTap from "../assets/img/tap11.png";
-import Item from "./Item";
+import firstTap from '../assets/img/tap9.png';
+import secondTap from '../assets/img/tap10.png';
+import thirdTap from '../assets/img/tap11.png';
+import Item from './Item';
 
 const Start = () => {
   return (
-    <div id="start" className="flex flex-col w-screen road-bg">
-      <span className="text-center section-title pt-5 lg:pt-[68px] pb-7 lg:pb-[88px]">
+    <div id='start' className='flex flex-col w-screen road-bg'>
+      <span className='text-center section-title pt-5 lg:pt-[68px] pb-7 lg:pb-[88px]'>
         Getting Started
       </span>
-      <div className="flex flex-col lg:flex-row gap-[30px] xl:gap-14 w-screen px-10 xl:px-56 pb-[58px] xl:pb-[202px]">
-        <Item
-          imgSrc={firstTap}
-          title="Taproot Assets: An Overview of Bitcoin NFTs"
-        />
+      <div className='flex flex-col lg:flex-row gap-[30px] xl:gap-14 w-screen px-10 xl:px-56 pb-[58px] xl:pb-[202px]'>
+        <Item imgSrc={firstTap} title='What are Ordinals & Runes?' />
         <Item
           imgSrc={secondTap}
-          title="Bitcoin Taproot Assets — A Gamechanger"
+          title='Bitcoin Taproot Assets — A Gamechanger'
         />
         <Item
           imgSrc={thirdTap}
-          title="Are Bitcoin Taproot Assets The Next Big Thing?"
+          title='Are Bitcoin Taproot Assets The Next Big Thing?'
         />
         {/* <div className='flex-1 flex flex-col'>
           <img src={firstTap} alt='tap1' className='rounded-tl-[5px] rounded-tr-[5px] border-b-0' />
