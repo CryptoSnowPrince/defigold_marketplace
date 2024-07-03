@@ -8,8 +8,95 @@ import LinkIcon from '../assets/img/link.svg';
 import Logo from '../assets/img/Logo.svg';
 import GoldArrow from '../assets/img/gold-arrow.svg';
 import { Link } from 'react-router-dom';
+import { useRef } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { ALERT_ERROR_CONFIG } from '../utils/constants';
+import { toast } from 'react-toastify';
+
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
 
 const Footer = () => {
+  const emailRef = useRef(null);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const email = emailRef.current.value;
+    console.log(email);
+
+    if (!isValidEmail(email)) {
+      toast('Invalid Email format', ALERT_ERROR_CONFIG);
+      return;
+    }
+    axios
+      .post('https://defigold-email-be.vercel.app/form/subscribe', {
+        email: email,
+      })
+      .then((res) => {
+        Swal.fire({
+          showClass: {
+            popup: `
+          animate__animated
+          animate__fadeInUp
+          animate__faster
+        `,
+          },
+          hideClass: {
+            popup: `
+          animate__animated
+          animate__fadeOutDown
+          animate__faster
+        `,
+          },
+          customClass: {
+            popup:
+              'font-sfui md:text-[0.8vw] xl:text-[1vw] bg-black-500 text-dark-text',
+            confirmButton: 'px-4 py-2 bg-gold rounded-md font-bold',
+          },
+          confirmButtonColor: '#EFB325',
+          title: 'Thank you for subscribing to Defi.Gold updates.',
+          text: '🚀 Get ready to stay ahead of the curve in the Bitcoin blockchain revolution. Your subscription means a lot to us as we redefine the future of trading and smart contracts.',
+          footer: 'Stay tuned for exciting news and updates!',
+          icon: 'success',
+          iconColor: '#EFB325',
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          showClass: {
+            popup: `
+          animate__animated
+          animate__fadeInUp
+          animate__faster
+        `,
+          },
+          hideClass: {
+            popup: `
+          animate__animated
+          animate__fadeOutDown
+          animate__faster
+        `,
+          },
+          customClass: {
+            popup:
+              'font-sfui md:text-[0.8vw] xl:text-[1vw] bg-black-500 text-dark-text',
+            confirmButton: 'px-4 py-2 bg-gold rounded-md font-bold',
+          },
+          confirmButtonColor: '#EFB325',
+          text: 'Your request has been already submitted!',
+          title: 'Request already submitted!',
+          icon: 'success',
+          iconColor: '#EFB325',
+        });
+      })
+      .finally(() => {
+        emailRef.current.value = '';
+      });
+  };
+
   return (
     <div className='flex flex-col lg:w-full bg-dark-text/95'>
       <div className='flex flex-col px-5 py-9 lg:hidden'>
@@ -19,9 +106,13 @@ const Footer = () => {
         <input
           type='email'
           placeholder='E-mail'
+          ref={emailRef}
           className='py-4 px-[18px] border-solid border-[1px] border-white rounded-md bg-transparent mx-[1px] font-sfui text-base leading-5 placeholder:text-hint-text mb-3'
         />
-        <button className='bg-base-text rounded-md text-dark-text px-6 py-4 text-base leading-4 font-bold font-sfui'>
+        <button
+          className='bg-base-text rounded-md text-dark-text px-6 py-4 text-base leading-4 font-bold font-sfui'
+          onClick={onSubmit}
+        >
           SUBSCRIBE NOW
         </button>
       </div>
@@ -128,9 +219,13 @@ const Footer = () => {
             <input
               type='email'
               placeholder='E-mail'
+              ref={emailRef}
               className='px-5 py-[14px] border-0 bg-transparent font-sfui text-xl leading-6 placeholder:text-hint-text flex-1 outline-none'
             />
-            <button className='bg-base-text rounded-md text-dark-text px-6 py-[18px] text-base leading-4 font-bold font-sfui'>
+            <button
+              className='bg-base-text rounded-md text-dark-text px-6 py-[18px] text-base leading-4 font-bold font-sfui'
+              onClick={onSubmit}
+            >
               SUBSCRIBE NOW
             </button>
           </div>
