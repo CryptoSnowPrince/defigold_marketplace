@@ -20,16 +20,16 @@ const Mint = () => {
           vision to life?
         </p>
         <p className='text-lg font-sfui leading-6'>
-          We Got You. Create impressive AI-generated Taproot Assets with Milo's
-          "AI Minter."
+          We Got You. Create impressive AI-generated Taproot Assets with DeFi
+          Gold's "AI Minter."
         </p>
         <p className='text-lg font-sfui leading-6'>
-          By entering text prompts or uploading photos, Milo holders can
-          generate stunning Taproot Assets for their Bitcoin NFTs.
+          By entering text prompts or uploading photos, DGOLD holders can
+          generate stunning Bitcoin NFTs.
         </p>
         <p className='text-lg font-sfui leading-6'>
           Awaken your inner artist and discover the amazing Digital Artifacts
-          you can create with the power of artificial intelligence.
+          you can create with the power of artificial intelligence.
         </p>
         <span className='rounded bg-dark-box py-[12px] px-[50px] text-gold font-sfui font-bold text-sm leading-[14px] w-fit'>
           COMING SOON
