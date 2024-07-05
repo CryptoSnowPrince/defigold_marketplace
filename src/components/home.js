@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Cursor, useTypewriter } from 'react-simple-typewriter';
-import AnimatedText from 'animated-text-letters';
-import 'animated-text-letters/index.css';
-import { AnimatedDots } from 'animated-dots';
+// import AnimatedText from 'animated-text-letters';
+// import 'animated-text-letters/index.css';
+// import { AnimatedDots } from 'animated-dots';
 import { Zoom } from 'react-awesome-reveal';
 import banner from '../assets/img/home-banner.png';
-import firstTap from '../assets/img/tap1.png';
-import secondTap from '../assets/img/tap2.png';
-import thirdTap from '../assets/img/tap3.png';
-import fourthTap from '../assets/img/tap4.png';
+// import firstTap from '../assets/img/tap1.png';
+// import secondTap from '../assets/img/tap2.png';
+// import thirdTap from '../assets/img/tap3.png';
+// import fourthTap from '../assets/img/tap4.png';
 import AnimLine from '../assets/img/animated_lines.png';
 import ExAnimLine from '../assets/img/ex_animated_lines.png';
 import Card from './card';
 import { getList } from './../utils/utils';
 import { Link } from 'react-router-dom';
-import Banner from './banner';
+// import Banner from './banner';
 
 const Home = () => {
   const [text, count] = useTypewriter({
