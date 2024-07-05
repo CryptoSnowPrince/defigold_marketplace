@@ -207,7 +207,7 @@ const Footer = () => {
         </div>
       </div>
       <div className='hidden md:flex flex-col pt-16'>
-        <div className='flex flex-row px-[250px] py-5 justify-between items-center'>
+        <div className='flex flex-row px-20 xl:px-[250px] py-5 justify-between items-center'>
           <span className='text-gold font-sfui font-semibold text-2xl leading-7'>
             Subscribe for News, Updates and Articles
           </span>
