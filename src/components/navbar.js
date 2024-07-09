@@ -10,9 +10,9 @@ const Navbar = ({ showNavbar, modifyNavbar }) => {
       } overflow-hidden bg-primary`}
     >
       <div className='flex flex-row justify-between items-center h-24 px-5 pb-2.5 pt-10'>
-        <Link to='https://defi.gold'>
+        <a href='https://defi.gold' target='_blank' rel='noopener noreferrer'>
           <img src={logo} alt='logo' className='w-[34px] h-[42px]' />
-        </Link>
+        </a>
         <div className='flex flex-row gap-5 h-full items-center'>
           <button className='bg-gold h-full font-sfui font-bold text-sm leading-[14px] px-6 rounded text-dark-text'>
             PRESENTATION

@@ -38,9 +38,9 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
       )}
       <div className='w-screen fixed bg-dark-text z-[40] hidden lg:flex flex-row items-center justify-between h-36 pt-[72px] pb-8 xl:px-8 px-[69px]'>
         <div className='flex flex-row pl-6 xl:pl-10 items-center'>
-          <Link to='https://defi.gold'>
+          <a href='https://defi.gold' target='_blank' rel='noopener noreferrer'>
             <img src={Logo} className='w-48' alt='logo' />
-          </Link>
+          </a>
         </div>
         <div className='flex flex-row flex-1 items-center justify-around xl:justify-center xl:gap-16'>
           <span>
