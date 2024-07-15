@@ -216,7 +216,14 @@ const Footer = () => {
           >
             Terms & Conditions
           </a>
-          <Link to='/policy'>Privacy Policy</Link>
+          <a
+            href='https://app.websitepolicies.com/policies/view/1xfifwso
+            '
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Privacy Policy
+          </a>
         </div>
       </div>
       <div className='hidden md:flex flex-col pt-16'>
@@ -284,7 +291,14 @@ const Footer = () => {
             >
               Terms & Conditions
             </a>
-            <Link to='/policy'>Privacy Policy</Link>
+            <a
+              href='https://app.websitepolicies.com/policies/view/1xfifwso
+            '
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              Privacy Policy
+            </a>
           </div>
           <div className='flex flex-col flex-1 gap-8 mx-auto text-center'>
             <span className='pb-2 text-gold text-[40px] leading-9'>
