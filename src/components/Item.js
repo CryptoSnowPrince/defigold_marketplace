@@ -8,8 +8,8 @@ const Item = ({ imgSrc, title }) => {
         alt='tap1'
         className='rounded-tl-[5px] rounded-tr-[5px] border-b-0'
       />
-      <div className='flex flex-row mt-[-1px] lg:mt-[-2px]'>
-        <span className='flex-1 px-[18px] py-4 rounded-bl-[5px] bg-dark-box text-light-text text-base leading-[19px] lg:px-7 xl:text-2xl lg:leading-7 font-sfui'>
+      <div className='flex flex-grow flex-row mt-[-1px] lg:mt-[-2px]'>
+        <span className='flex-1 items-center flex px-[18px] py-4 rounded-bl-[5px] bg-dark-box text-light-text text-base leading-[19px] lg:leading-7 font-sfui'>
           {title}
         </span>
         <span className='rounded-br-[5px] bg-gold w-[77px] lg:w-[118px] flex items-center justify-center'>

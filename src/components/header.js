@@ -58,11 +58,16 @@ const Header = ({ visibility, setNavbar, setWalletPanel }) => {
               Collections
             </a>
           </span>
-          {/* <span>
-            <a href='#' className='text-4xl font-medium'>
+          <span>
+            <a
+              href='https://pad.defi.gold'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-4xl font-medium'
+            >
               Launchpad
             </a>
-          </span> */}
+          </span>
           <span>
             <a href='/mint' className='text-4xl font-medium'>
               Mint

@@ -33,9 +33,15 @@ const Navbar = ({ showNavbar, modifyNavbar }) => {
           <a href='/collections' className='nav-item' onClick={modifyNavbar}>
             Collections
           </a>
-          {/* <a href='#' className='nav-item' onClick={modifyNavbar}>
+          <a
+            href='https://pad.defi.gold'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='nav-item'
+            onClick={modifyNavbar}
+          >
             Launchpad
-          </a> */}
+          </a>
           <a href='/mint' className='nav-item' onClick={modifyNavbar}>
             Mint
           </a>

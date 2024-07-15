@@ -193,7 +193,13 @@ const Footer = () => {
           </span>
           <Link to='/explorer'>All NFTs</Link>
           <Link to='/collections'>Collections</Link>
-          {/* <Link>Launchpad</Link> */}
+          <a
+            href='https://pad.defi.gold'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Launchpad
+          </a>
           <Link to='/mint'>Mint</Link>
         </div>
         <div className='flex flex-col justify-start px-12 gap-2.5 text-base-text text-lg leading-6'>
@@ -202,7 +208,14 @@ const Footer = () => {
           </span>
           {/* <span>Help Center</span> */}
           <Link to='https://defi.gold'>About Us</Link>
-          <Link to='/terms'>Terms & Conditions</Link>
+          <a
+            href='https://app.websitepolicies.com/policies/view/1xfifwso
+            '
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Terms & Conditions
+          </a>
           <Link to='/policy'>Privacy Policy</Link>
         </div>
       </div>
@@ -248,7 +261,13 @@ const Footer = () => {
             </span>
             <Link to='/explorer'>All NFTs</Link>
             <Link to='/collections'>Collections</Link>
-            {/* <Link>Launchpad</Link> */}
+            <a
+              href='https://pad.defi.gold'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              Launchpad
+            </a>
             <Link to='/mint'>Mint</Link>
           </div>
           <div className='flex flex-col flex-1 mx-auto gap-7 text-2xl text-center'>
@@ -257,7 +276,14 @@ const Footer = () => {
             </span>
             {/* <span>Help Center</span> */}
             <Link to='https://defi.gold'>About Us</Link>
-            <Link to='/terms'>Terms & Conditions</Link>
+            <a
+              href='https://app.websitepolicies.com/policies/view/1xfifwso
+            '
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              Terms & Conditions
+            </a>
             <Link to='/policy'>Privacy Policy</Link>
           </div>
           <div className='flex flex-col flex-1 gap-8 mx-auto text-center'>
