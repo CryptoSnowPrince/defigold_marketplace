@@ -126,7 +126,8 @@ export function RELEASE(param1, param2, ...param3) {
 }
 export const DEBUG = console.log;
 
-export const API_PATH = 'https://nft.defi.gold/api';
+// export const API_PATH = 'https://nft.defi.gold/api';
+export const API_PATH = 'http://localhost:7777/api'; //dev mode
 
 /******************************************/
 export const NETWORK = NET_TYPE_TEST; // TODO
