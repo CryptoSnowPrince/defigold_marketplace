@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { ArrowUpTrayIcon, EyeIcon } from '@heroicons/react/24/outline';
 
 import {
@@ -27,9 +27,12 @@ const Mint = ({ setWalletPanel }) => {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [pendingInscribe, setPendingInscribe] = useState(false);
   const [pendingEstimate, setPendingEstimate] = useState(false);
+  const [pendingGenerate, setPendingGenerate] = useState(false);
   const [estimateFeeSats, setEstimateFeeSats] = useState(0);
   const [value, setValue] = useState({ feeRate: '' });
   const [error, setError] = useState({});
+  const [NFTType, setNFTType] = useState('upload');
+  const promptRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo({
@@ -122,11 +125,8 @@ const Mint = ({ setWalletPanel }) => {
 
   const handleEstimateMint = async (e) => {
     e.preventDefault();
-    if (pendingInscribe || pendingEstimate) {
-      toast.warn(
-        'Pending... Please wait until few seconds!',
-        ALERT_WARN_CONFIG
-      );
+    if (pendingInscribe || pendingEstimate || pendingGenerate) {
+      toast.warn('Pending... Please wait for few seconds!', ALERT_WARN_CONFIG);
       return;
     }
 
@@ -170,11 +170,8 @@ const Mint = ({ setWalletPanel }) => {
 
   const handleMint = async (e) => {
     e.preventDefault();
-    if (pendingInscribe || pendingEstimate) {
-      toast.warn(
-        `Pending... Please wait until few seconds!`,
-        ALERT_WARN_CONFIG
-      );
+    if (pendingInscribe || pendingEstimate || pendingGenerate) {
+      toast.warn(`Pending... Please wait for few seconds!`, ALERT_WARN_CONFIG);
       return;
     }
 
@@ -247,6 +244,41 @@ const Mint = ({ setWalletPanel }) => {
     }
   };
 
+  const handleGenerate = async (e) => {
+    e.preventDefault();
+    if (pendingInscribe || pendingEstimate || pendingGenerate) {
+      toast.warn(`Pending... Please wait for few seconds!`, ALERT_WARN_CONFIG);
+      return;
+    }
+    const prompt = promptRef.current.value;
+    if (prompt.trim().length === 0) {
+      toast.warn('Input image prompt.', ALERT_WARN_CONFIG);
+      return;
+    }
+    setPendingGenerate(true);
+    try {
+      const response = await axios.post(`${API_PATH}/utils/generateAIImage`, {
+        prompt: prompt,
+      });
+      if (response.data.status === SUCCESS) {
+        setPreviewUrl(response.data.result[0]);
+      } else {
+        toast.error('AI image generation failed', ALERT_ERROR_CONFIG);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(
+        `Something went wrong!  errCode: ${error}`,
+        ALERT_ERROR_CONFIG
+      );
+    }
+    setPendingGenerate(false);
+  };
+
+  const handleImageTypeChanged = (e) => {
+    setNFTType(e.target.value);
+  };
+
   return (
     <div className='lg:py-60 py-28 xl:px-56 px-5 lg:px-28 flex flex-col'>
       <span className='font-sfui text-white text-center lg:text-6xl font-bold text-xl'>
@@ -255,29 +287,50 @@ const Mint = ({ setWalletPanel }) => {
       <div className='flex flex-row font-sfui mt-12 rounded-lg gap-6'>
         <div className='flex flex-col h-fit flex-1 bg-primary rounded-lg px-4 py-6 gap-6 border border-gray-700'>
           <div className='flex flex-col gap-1'>
-            <span className=''>Upload your artifact</span>
-            <div className='relative flex flex-col py-6 items-center text-center rounded-xl border-2 border-gray-700 gap-4 cursor-pointer'>
-              <div className='bg-dark-box p-2 rounded-full flex justify-center items-center'>
-                <ArrowUpTrayIcon class='h-6 w-6 text-gray-500' />
+            <select
+              className='max-w-fit p-2 border-gray-700 rounded-md border-2'
+              onChange={handleImageTypeChanged}
+              disabled={pendingInscribe || pendingEstimate || pendingGenerate}
+            >
+              <option className='p-2' value='upload'>
+                Upload your artifact
+              </option>
+              <option className='p-2' value='AI'>
+                Generate AI artifact
+              </option>
+            </select>
+            {/* <span className=''>Upload your artifact</span> */}
+            {NFTType === 'upload' ? (
+              <div className='relative flex flex-col py-6 items-center text-center rounded-xl border-2 border-gray-700 gap-4 cursor-pointer'>
+                <div className='bg-dark-box p-2 rounded-full flex justify-center items-center'>
+                  <ArrowUpTrayIcon className='h-6 w-6 text-gray-500' />
+                </div>
+                <span className='text-hint-text'>
+                  Drop file or click to select.
+                </span>
+                <span className='text-hint-text'>
+                  {`Must be <${FILE_MAXSIZE / 1000}kb each of type.`}
+                </span>
+                <span className='text-hint-text'>
+                  Supported type: apng gif glb jpg png stl svg webp.
+                </span>
+                <input
+                  className='absolute top-0 end-0 start-0 bottom-0 opacity-0'
+                  type='file'
+                  name='upload'
+                  accept='.apng,.gif,.glb,.jpg,.png,.stl,.svg,.webp'
+                  disabled={pendingInscribe || pendingEstimate}
+                  onChange={handleFileChange}
+                />
               </div>
-              <span className='text-hint-text'>
-                Drop file or click to select.
-              </span>
-              <span className='text-hint-text'>
-                {`Must be <${FILE_MAXSIZE / 1000}kb each of type.`}
-              </span>
-              <span className='text-hint-text'>
-                Supported type: apng gif glb jpg png stl svg webp.
-              </span>
-              <input
-                className='absolute top-0 end-0 start-0 bottom-0 opacity-0'
-                type='file'
-                name='upload'
-                accept='.apng,.gif,.glb,.jpg,.png,.stl,.svg,.webp'
-                disabled={pendingInscribe || pendingEstimate}
-                onChange={handleFileChange}
-              />
-            </div>
+            ) : (
+              <textarea
+                className='border-2 border-gray-700 p-2 rounded-xl focus:border-gray-700'
+                rows='8'
+                placeholder='Input AI image prompt here.'
+                ref={promptRef}
+              ></textarea>
+            )}
           </div>
           <div className='block lg:hidden h-full bg-dark-box border border-gray-700 rounded-lg p-4'>
             {!previewUrl ? (
@@ -340,7 +393,16 @@ const Mint = ({ setWalletPanel }) => {
               </div>
             </div>
           )}
-          <div className='flex flex-row px-4 gap-8 justify-center'>
+          <div className='flex flex-col sm:flex-row px-4 gap-8 justify-center'>
+            {connected && NFTType === 'AI' && (
+              <button
+                className='w-full bg-gold text-dark-text font-sfui text-sm lg:text-lg py-2 rounded-lg flex gap-2 justify-center items-center'
+                disabled={pendingInscribe || pendingEstimate || pendingGenerate}
+                onClick={(e) => handleGenerate(e)}
+              >
+                {pendingGenerate ? `Generating Now...` : `Generate`}
+              </button>
+            )}
             {!connected ? (
               <button
                 className='bg-gold w-full text-dark-text font-sfui text-sm lg:text-lg py-2 rounded-lg flex gap-2 justify-center items-center'
