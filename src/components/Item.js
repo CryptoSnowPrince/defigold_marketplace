@@ -1,6 +1,6 @@
 import ArrowBtn from '../assets/img/arrow.svg';
 
-const Item = ({ imgSrc, title }) => {
+const Item = ({ imgSrc, title, link }) => {
   return (
     <div className='start-item flex-1 flex flex-col'>
       <img
@@ -13,14 +13,14 @@ const Item = ({ imgSrc, title }) => {
           {title}
         </span>
         <span className='rounded-br-[5px] bg-gold w-[77px] lg:w-[118px] flex items-center justify-center'>
-          <div className='arrow-image-container'>
+          <a href={link} target='_blank' rel='noopener noreferrer' className='arrow-image-container'>
             <img
               src={ArrowBtn}
               alt='arrow'
               className='h-[30px] lg:h-12 arrow-image'
             />
             <div className='arrow-shine'></div>
-          </div>
+          </a>
         </span>
       </div>
     </div>
