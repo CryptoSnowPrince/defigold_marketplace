@@ -13,17 +13,17 @@ const Start = () => {
         <Item
           imgSrc={firstTap}
           title='What are Ordinals & Runes?'
-          link='https://docs.google.com/document/d/1bbdoNF8rBkZWBsai8KJFjJ8hFCZ-acdvlL9Xf82yDrg/edit?usp=sharing'
+          link='/article1'
         />
         <Item
           imgSrc={secondTap}
           title='Bitcoin Taproot Assets — A Gamechanger'
-          link='https://docs.google.com/document/d/197G3TaxC_r5G9GzC8UdtDSVz0zndeLOykJ8exKV2qKs/edit?usp=sharing'
+          link='/article2'
         />
         <Item
           imgSrc={thirdTap}
           title='Are Bitcoin Taproot Assets The Next Big Thing?'
-          link='https://docs.google.com/document/d/1StH2o5CF9wVZjeyTziKvx0FSNpBsCi3h517qq9LNcBo/edit?usp=sharing'
+          link='/article3'
         />
         {/* <div className='flex-1 flex flex-col'>
           <img src={firstTap} alt='tap1' className='rounded-tl-[5px] rounded-tr-[5px] border-b-0' />

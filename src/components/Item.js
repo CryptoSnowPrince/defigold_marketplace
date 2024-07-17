@@ -13,7 +13,7 @@ const Item = ({ imgSrc, title, link }) => {
           {title}
         </span>
         <span className='rounded-br-[5px] bg-gold w-[77px] lg:w-[118px] flex items-center justify-center'>
-          <a href={link} target='_blank' rel='noopener noreferrer' className='arrow-image-container'>
+          <a href={link} className='arrow-image-container'>
             <img
               src={ArrowBtn}
               alt='arrow'

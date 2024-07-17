@@ -18,6 +18,9 @@ import ScrollToTopButton from './components/scroll';
 import Soon from './pages/soon';
 import Terms from './pages/terms';
 import Policy from './pages/policy';
+import Article1 from './components/article1';
+import Article2 from './components/article2';
+import Article3 from './components/article3';
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -100,6 +103,9 @@ function App() {
               <Route path='/collections' element={<Soon />} />
               <Route path='/terms' element={<Terms />} />
               <Route path='/policy' element={<Policy />} />
+              <Route path='/article1' element={<Article1 />} />
+              <Route path='/article2' element={<Article2 />} />
+              <Route path='/article3' element={<Article3 />} />
             </Routes>
           )}
           <Footer />
