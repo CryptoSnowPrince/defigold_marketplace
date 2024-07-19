@@ -91,6 +91,7 @@ const Mint = ({ setWalletPanel }) => {
       return true;
     });
     if (value.feeRate.length === 0) terror += 1;
+    console.log(terror);
     if (terror > 0) {
       return false;
     } else {
@@ -129,13 +130,25 @@ const Mint = ({ setWalletPanel }) => {
       toast.warn('Pending... Please wait for few seconds!', ALERT_WARN_CONFIG);
       return;
     }
+    console.log(connected, ordinalsAddress.address, file);
 
-    if (checkAllValidation() && connected && ordinalsAddress.address && file) {
+    if (
+      (NFTType !== 'AI' &&
+        checkAllValidation() &&
+        connected &&
+        ordinalsAddress.address &&
+        file) ||
+      (NFTType === 'AI' && connected && ordinalsAddress.address && file)
+    ) {
       setPendingEstimate(true);
+      console.log(connected, ordinalsAddress.address, file);
       const formData = new FormData();
       formData.append('file', file);
+      formData.append('type', NFTType);
       formData.append('feeRate', value.feeRate);
       formData.append('ordinal', ordinalsAddress.address);
+      if (NFTType === 'AI') formData.append('path', previewUrl);
+      console.log(formData);
       try {
         const response = await axios.post(
           `${API_PATH}/users/estimateInscribe`,
@@ -179,7 +192,9 @@ const Mint = ({ setWalletPanel }) => {
       setPendingInscribe(true);
 
       const formData = new FormData();
+      if (NFTType === 'AI') formData.append('path', previewUrl);
       formData.append('file', file);
+      formData.append('type', NFTType);
       formData.append('feeRate', value.feeRate);
       formData.append('ordinal', ordinalsAddress.address);
       try {
@@ -262,6 +277,10 @@ const Mint = ({ setWalletPanel }) => {
       });
       if (response.data.status === SUCCESS) {
         setPreviewUrl(response.data.result[0]);
+        const fileRes = await fetch(response.data.result[0]);
+        const blob = await fileRes.blob();
+        const imgFile = new File([blob], 'image.jpg', { type: blob.type });
+        setFile(imgFile);
       } else {
         toast.error('AI image generation failed', ALERT_ERROR_CONFIG);
       }
