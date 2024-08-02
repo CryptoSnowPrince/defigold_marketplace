@@ -242,14 +242,37 @@ export const getInscriptions = async (address) => {
         return true;
       });
 
+      const ordConfirmedInscriptions = ordConfirmedIns.map((item) => {
+        return {
+          ...item,
+          isListed:
+            listedItems.findIndex(
+              (it) => it.inscriptionId === item.inscriptionId
+            ) >= 0
+              ? true
+              : false,
+        };
+      });
+
       return {
         total: ordConfirmedIns.length,
-        inscription: ordConfirmedIns,
+        inscription: ordConfirmedInscriptions,
       };
     } else {
+      const ordConfirmedInscriptions = insByUnisat.inscription.map((item) => {
+        return {
+          ...item,
+          isListed:
+            listedItems.findIndex(
+              (it) => it.inscriptionId === item.inscriptionId
+            ) >= 0
+              ? true
+              : false,
+        };
+      });
       return {
         total: insByUnisat.inscription.length,
-        inscription: insByUnisat.inscription,
+        inscription: ordConfirmedInscriptions,
       };
     }
   } catch (error) {

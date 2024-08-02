@@ -1,6 +1,13 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import Stepper from 'awesome-react-stepper';
-import { ALERT_WARN_CONFIG, FILE_MAXSIZE } from '../utils/constants';
+import {
+  ALERT_ERROR_CONFIG,
+  ALERT_SUCCESS_CONFIG,
+  ALERT_WARN_CONFIG,
+  API_PATH,
+  FILE_MAXSIZE,
+  SUCCESS,
+} from '../utils/constants';
 import { isValidBitcoinAddress } from '../utils/utils';
 import { toast } from 'react-toastify';
 import validator from 'validator';
@@ -15,6 +22,7 @@ import {
 } from '@headlessui/react';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
 import axios from 'axios';
+import { GlobalContext } from '../context/globalContext';
 
 const CollectionInfo = {
   name: '',
@@ -48,6 +56,8 @@ const categories = [
 ];
 
 function CreatorHub() {
+  const { connected, feeData, ordinalsAddress, satBalance, sendBTC } =
+    useContext(GlobalContext);
   const [step, setStep] = useState(1);
   const [derivated, setDerivated] = useState(false);
   const [fieldInvalid, setFieldInvalid] = useState(true);
@@ -60,9 +70,9 @@ function CreatorHub() {
   const symbolRef = useRef(null);
   const artLinkRef = useRef(null);
   const originalNameRef = useRef(null);
-  const discordRef = useRef(null);
-  const websiteRef = useRef(null);
-  const tipAddressRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const profileRef = useRef(null);
+  const twitterRef = useRef(null);
   const [secondQuery, setSecondQuery] = useState(categories);
   const [iframeVisibility, setIframeVisibility] = useState(false);
   const [twitterLink, setTiwitterLink] = useState('');
@@ -95,9 +105,6 @@ function CreatorHub() {
       )
         setFieldInvalid(false);
     }
-    if (step === 3) {
-      // if (e.target.name === 'primaryCondition  ')
-    }
   };
 
   const onPrevStep = () => {
@@ -108,6 +115,66 @@ function CreatorHub() {
     // TODO: check symbol existance for step 2
     setStep(step + 1);
     setFieldInvalid(true);
+  };
+
+  const handleSubmit = async () => {
+    if (!connected) {
+      toast.warn('Connect your wallet first', ALERT_WARN_CONFIG);
+      return;
+    }
+    if (info.description.length < 10) {
+      toast.warn(
+        'Description must be at least 10 characters long',
+        ALERT_WARN_CONFIG
+      );
+      return;
+    }
+    if (
+      info.description.trim().length === 0 ||
+      !file ||
+      (derivated &&
+        (info.artLink.trim().length === 0 ||
+          info.originalName.trim().length === 0)) ||
+      info.primaryCategory === '' ||
+      info.primaryCategory === '-' ||
+      info.secondaryCategory === '' ||
+      info.secondaryCategory === '-' ||
+      info.primaryCategory === info.secondaryCategory ||
+      info.twitter.trim().length === 0
+    ) {
+      toast.warn('Missing input parameters', ALERT_WARN_CONFIG);
+      return;
+    }
+    const res = await axios.get(`${API_PATH}/utils/getDeposit`);
+    const deposit = res.data.result;
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('deposit', deposit);
+    formData.append('title', info.name);
+    formData.append('symbol', info.symbol);
+    formData.append('description', info.description);
+    formData.append('icon', info.icon);
+    formData.append('derivated', info.derivated);
+    formData.append('artLink', info.artLink);
+    formData.append('originalName', info.originalName);
+    formData.append('primaryCategory', info.primaryCategory);
+    formData.append('secondaryCategory', info.secondaryCategory);
+    formData.append('twitter', info.twitter);
+    formData.append('discord', info.discord);
+    formData.append('website', info.website);
+    formData.append('tipAddress', info.tipAddress);
+    formData.append('ownerEmail', info.email);
+    formData.append('ownerAddress', ordinalsAddress.address);
+    formData.append('hashList', info.hashList);
+    console.log(info.primaryCategory, info.secondaryCategory);
+    const response = await axios.post(
+      `${API_PATH}/collections/addCollection`,
+      formData
+    );
+    if (response.data.status === SUCCESS) {
+      toast.success('Collection created successfully.', ALERT_SUCCESS_CONFIG);
+      // window.location.href = '/collections';
+    } else toast.warn(response.data.message, ALERT_ERROR_CONFIG);
   };
 
   function handleFileChange(event) {
@@ -128,19 +195,6 @@ function CreatorHub() {
     // }
   }
 
-  const handleTwitterButton = async () => {
-    const tokenRes = await axios.post(
-      'https://api.twitter.com/oauth/request_token'
-    );
-    console.log(tokenRes);
-    if (tokenRes.status === 200) {
-      setTiwitterLink(
-        `https://api.twitter.com/oauth/authenticate/authenticate?oauth_token=${tokenRes.data.oauth_token}`
-      );
-      setIframeVisibility(true);
-    }
-  };
-
   return (
     <div className='flex-col w-screen h-full pt-28 lg:pt-48 overflow-y-auto'>
       <div className='px-4 md:px-16'>
@@ -156,10 +210,11 @@ function CreatorHub() {
             </button>
           }
           onPrev={onPrevStep}
+          onSubmit={handleSubmit}
         >
-          <div className='flex flex-col w-full md:w-1/2 mx-auto'>
+          <div className='flex flex-col w-full md:w-1/2 mx-auto font-sfui'>
             <h1 className='text-4xl mb-3'>Personal Info</h1>
-            <span className='text-2xl mb-2'>Tell us about You!</span>
+            <span className='text-xl mb-2'>Tell us about You!</span>
             <label className='text-xl'>Email</label>
             <input
               name='email'
@@ -181,9 +236,9 @@ function CreatorHub() {
               className='mb-3 border-[1px] md:w-80 px-2 py-3 font-sfui rounded-md'
             />
           </div>
-          <div className='flex flex-col w-full md:w-1/2 mx-auto'>
+          <div className='flex flex-col w-full md:w-1/2 mx-auto font-sfui'>
             <h1 className='text-4xl mb-3'>Collection Info</h1>
-            <span className='text-2xl mb-2'>
+            <span className='text-xl mb-2'>
               Tell us about the collection you're minting!
             </span>
             <label className='text-xl'>Collection Name</label>
@@ -205,38 +260,39 @@ function CreatorHub() {
               className='mb-3 border-[1px] md:w-80 px-2 py-3 font-sfui rounded-md'
             />
           </div>
-          <div className='flex flex-col w-full md:w-1/2 mx-auto'>
+          <div className='flex flex-col w-full md:w-1/2 mx-auto font-sfui'>
             <h1 className='text-4xl mb-3'>Listing details</h1>
-            <span className='text-2xl mb-2'>
+            <span className='text-xl mb-2'>
               Enter in details on your collection that will be used for your
               marketplace page.
             </span>
-            <label className='text-xl'>Collection Symbol</label>
+            <label className='text-xl'>Collection Description</label>
             <textarea
               rows='2'
-              className='mb-8 px-2 py-2 font-sfui rounded-md border-[1px]'
+              className='mb-8 px-2 py-2 font-sfui rounded-md border-[1px] bg-transparent'
               name='description'
+              ref={descriptionRef}
               onChange={onHandleChange}
               value={info.description}
             />
-            <label className='text-xl'>Collection Symbol</label>
+            <label className='text-xl'>Inscription Icon(Optioal)</label>
             <input
               type='text'
               ref={symbolRef}
               name='symbol'
               onChange={onHandleChange}
               required
-              className='border-[1px] md:w-80 px-2 py-3 font-sfui rounded-md'
+              className='border-[1px] md:w-80 p-2 font-sfui rounded-md'
             />
             <span className='mb-3 font-sfui'>
               Inscription Icon is the inscription id of the most representative
               token of the collection
             </span>
             <label className='text-xl'>Profile Image</label>
-            {info.perview && (
+            {info.preview && (
               <img src={info.preview} className='max-h-[500px]' alt='preview' />
             )}
-            <button className='relative px-6 py-2 bg-gold rounded-md w-fit mt-4 font-sfui text-2xl mb-6'>
+            <button className='relative px-6 py-2 bg-gold rounded-md w-fit mt-4 font-sfui text-xl mb-6'>
               {info.preview ? 'Modify Image' : 'Upload Image'}
               <input
                 className='absolute top-0 end-0 start-0 bottom-0 opacity-0'
@@ -246,7 +302,7 @@ function CreatorHub() {
                 onChange={handleFileChange}
               />
             </button>
-            <label className='text-3xl'>Derivative</label>
+            <label className='text-2xl'>Derivative</label>
             <Switch
               checked={derivated}
               onChange={setDerivated}
@@ -262,7 +318,7 @@ function CreatorHub() {
             </label>
             {derivated && (
               <div className='flex flex-col gap-2'>
-                <label className='text-2xl font-sfui'>
+                <label className='text-xl font-sfui'>
                   Link To The Original Artwork
                 </label>
                 <input
@@ -274,7 +330,7 @@ function CreatorHub() {
                   required
                   className='border-[1px] md:w-80 px-2 py-3 mb-4 font-sfui rounded-md'
                 />
-                <label className='text-2xl font-sfui'>Original Name</label>
+                <label className='text-xl font-sfui'>Original Name</label>
                 <input
                   type='text'
                   ref={originalNameRef}
@@ -286,13 +342,13 @@ function CreatorHub() {
                 />
               </div>
             )}
-            <label className='text-3xl mb-6'>Categories</label>
-            <label className='text-2xl font-sfui'>Primary Category</label>
+            <label className='text-2xl mb-6'>Categories</label>
+            <label className='text-xl font-sfui'>Primary Category</label>
             <select
               name='primaryCategory'
               onChange={onHandleChange}
               value={info.primaryCategory}
-              className='w-full md:w-1/2 border-[1px] p-2 rounded-md mb-2'
+              className='w-full md:w-1/2 border-[1px] p-2 rounded-md mb-2 bg-transparent'
             >
               {categories.map((option) => {
                 return (
@@ -306,12 +362,12 @@ function CreatorHub() {
               Select the primary category that you would like for this
               collection to be listed under
             </span>
-            <label className='text-2xl font-sfui'>Secondary Category</label>
+            <label className='text-xl font-sfui'>Secondary Category</label>
             <select
               name='secondaryCategory'
               onChange={onHandleChange}
               value={info.secondaryCategory}
-              className='w-full md:w-1/2 border-[1px] p-2 rounded-md mb-2'
+              className='w-full md:w-1/2 border-[1px] p-2 rounded-md mb-2 bg-transparent'
             >
               {categories.map((option) => {
                 return (
@@ -325,13 +381,21 @@ function CreatorHub() {
               Select the secondary category for this collection to be listed
               under
             </span>
-            <label className='text-3xl mb-6'>Social & Web Links</label>
-            <span className='text-2xl mb-4'>
+            <label className='text-2xl mb-6'>Social & Web Links</label>
+            <span className='text-xl mb-4'>
               Input your social and website links for your collection. These
               links will be displayed on your collection page
             </span>
-            <span className='text-xl'>Please link your Twitter account</span>
-            <button onClick={handleTwitterButton}>Link Twitter</button>
+            <input
+              type='text'
+              className='p-2 font-sfui w-full md:w-1/2 border-[1px] rounded-md'
+              onChange={onHandleChange}
+              name='twitter'
+              ref={twitterRef}
+              value={info.twitter}
+            />
+            {/* <span className='text-xl'>Please link your Twitter account</span> */}
+            {/* <button onClick={handleTwitterButton}>Link Twitter</button>
             {iframeVisibility && (
               <iframe
                 src={twitterLink}
@@ -340,7 +404,38 @@ function CreatorHub() {
                 title='Twitter Auth'
                 className='border-none mt-2.5'
               />
-            )}
+            )} */}
+            <label className='text-xl font-sfui'>
+              Discord Invite Code(Optional)
+            </label>
+            <span className='font-sfui text-gray-500'>https://discord.gg/</span>
+            <input
+              type='text'
+              className='p-2 font-sfui w-full md:w-1/2 border-[1px] rounded-md'
+              onChange={onHandleChange}
+              name='discord'
+              placeholder='98yXPI'
+              value={info.discord}
+            />
+            <label className='text-xl font-sfui'>Website Url(Optional)</label>
+            <input
+              type='text'
+              className='p-2 font-sfui w-full md:w-1/2 border-[1px] rounded-md'
+              onChange={onHandleChange}
+              name='website'
+              placeholder='https://supercollection.io'
+              value={info.website}
+            />
+            <label className='text-2xl my-6'>Creator Tips</label>
+            <span className='text-xl'>Creator Tips Address(Optional)</span>
+            <input
+              type='text'
+              className='p-2 font-sfui w-full md:w-1/2 border-[1px] rounded-md'
+              onChange={onHandleChange}
+              name='tipAddress'
+              placeholder='Valid Bitcoin (P2SH/P2WPKH/P2TR) Address'
+              value={info.tipAddress}
+            />
           </div>
         </Stepper>
       </div>

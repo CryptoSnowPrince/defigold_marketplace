@@ -89,6 +89,7 @@ const Profile = () => {
                   resId={item.inscriptionId}
                   resNumber={item.inscriptionNumber}
                   address={item.address}
+                  isListed={item.isListed}
                   isOwner={true}
                 />
               );
