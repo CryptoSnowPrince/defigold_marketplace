@@ -872,3 +872,7 @@ li::marker {
   opacity: 1;
   pointer-events: auto;
 }
+
+input {
+  background-color: transparent;
+}

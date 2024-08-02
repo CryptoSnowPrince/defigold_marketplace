@@ -129,7 +129,7 @@ function CreatorHub() {
   }
 
   const handleTwitterButton = async () => {
-    const tokenRes = await axios.get(
+    const tokenRes = await axios.post(
       'https://api.twitter.com/oauth/request_token'
     );
     console.log(tokenRes);
