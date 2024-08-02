@@ -25,6 +25,7 @@ export const CARD_VIEW = 5;
 
 export const SERVICE_FEE = 10000;
 export const OUTPUT_UTXO = 546;
+export const AI_GENERATION_FEE = 1000;
 
 export const ALERT_WARN_CONFIG = {
   position: ALERT_POSITION,
@@ -126,7 +127,9 @@ export function RELEASE(param1, param2, ...param3) {
 }
 export const DEBUG = console.log;
 
-export const API_PATH = 'https://nft.defi.gold/api';
+// export const API_PATH = 'https://nft.defi.gold/api';
+export const API_PATH = 'http://localhost:7777/api';
+// export const API_PATH = 'http://94.130.32.157:7777/api'; //dev mode
 
 /******************************************/
 export const NETWORK = NET_TYPE_TEST; // TODO
