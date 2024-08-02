@@ -21,6 +21,8 @@ import Policy from './pages/policy';
 import Article1 from './components/article1';
 import Article2 from './components/article2';
 import Article3 from './components/article3';
+import Collections from './pages/collections';
+import CreatorHub from './pages/creatorhub';
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -100,12 +102,13 @@ function App() {
                 element={<Mint setWalletPanel={modifyWalletPanel} />}
               />
               <Route path='/explorer' element={<Explorer />} />
-              <Route path='/collections' element={<Soon />} />
+              <Route path='/collections' element={<Collections />} />
               <Route path='/terms' element={<Terms />} />
               <Route path='/policy' element={<Policy />} />
               <Route path='/article1' element={<Article1 />} />
               <Route path='/article2' element={<Article2 />} />
               <Route path='/article3' element={<Article3 />} />
+              <Route path='/creator' element={<CreatorHub />} />
             </Routes>
           )}
           <Footer />

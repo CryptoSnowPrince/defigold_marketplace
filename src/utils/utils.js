@@ -228,6 +228,9 @@ export const getInscriptions = async (address) => {
       0,
       ordAddrInfoByUnisat.inscriptionUtxoCount
     );
+    const listedItems = await getList({ addresses: [address] });
+    console.log(ordAddrInfoByUnisat, insByUnisat);
+    console.log(listedItems);
     const ordUtxo = await getAddressUtxo(address);
     const pendingUtxo = ordUtxo.filter((utxo) => !utxo.status.confirmed);
     if (pendingUtxo.length > 0 && insByUnisat.inscription.length > 0) {
@@ -589,4 +592,24 @@ export const isOwnerOfUtxo = (utxos, utxo) => {
     }
   }
   return false;
+};
+
+export const isValidBitcoinAddress = (address) => {
+  const p2shRegex = /^3[a-km-zA-HJ-NP-Z1-9]{25,34}$/;
+  const p2wpkhRegex = /^bc1q[a-z0-9]{39,59}$/;
+  const p2trRegex = /^bc1p[a-z0-9]{58}$/;
+
+  if (p2shRegex.test(address)) {
+    return true;
+    // return 'P2SH';
+  } else if (p2wpkhRegex.test(address)) {
+    return true;
+    // return 'P2WPKH';
+  } else if (p2trRegex.test(address)) {
+    return true;
+    // return 'P2TR';
+  } else {
+    return false;
+    // return 'Invalid';
+  }
 };

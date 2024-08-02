@@ -25,6 +25,7 @@ export const CARD_VIEW = 5;
 
 export const SERVICE_FEE = 10000;
 export const OUTPUT_UTXO = 546;
+export const AI_GENERATION_FEE = 1000;
 
 export const ALERT_WARN_CONFIG = {
   position: ALERT_POSITION,

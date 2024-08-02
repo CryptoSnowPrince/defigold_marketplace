@@ -14,6 +14,7 @@ import {
   MIN_WALLET_SATS,
   ALERT_SUCCESS_CONFIG,
   UNISAT_URL,
+  AI_GENERATION_FEE,
 } from '../utils/constants';
 import { getLinkComponent, timeEstimate } from '../utils/utils';
 import { GlobalContext } from '../context/globalContext';
@@ -157,6 +158,9 @@ const Mint = ({ setWalletPanel }) => {
         console.log(response.data);
         if (response.data.status === SUCCESS) {
           setEstimateFeeSats(response.data.result.satoshi);
+          const totalSats =
+            response.data.result.satoshi + OUTPUT_UTXO + SERVICE_FEE;
+          console.log(totalSats, MIN_WALLET_SATS);
         } else {
           toast.error('Estimate Fail. Please try again.', ALERT_ERROR_CONFIG);
         }
@@ -270,19 +274,27 @@ const Mint = ({ setWalletPanel }) => {
       toast.warn('Input image prompt.', ALERT_WARN_CONFIG);
       return;
     }
+    const res = await axios.get(`${API_PATH}/utils/getDeposit`);
+    const deposit = res.data.result;
     setPendingGenerate(true);
     try {
-      const response = await axios.post(`${API_PATH}/utils/generateAIImage`, {
-        prompt: prompt,
-      });
-      if (response.data.status === SUCCESS) {
-        setPreviewUrl(response.data.result[0]);
-        const fileRes = await fetch(response.data.result[0]);
-        const blob = await fileRes.blob();
-        const imgFile = new File([blob], 'image.jpg', { type: blob.type });
-        setFile(imgFile);
+      if (satBalance > AI_GENERATION_FEE + MIN_WALLET_SATS) {
+        const txId = await sendBTC(deposit, AI_GENERATION_FEE, 1);
+        console.log('txId for pay incribe: ', txId);
+        const response = await axios.post(`${API_PATH}/utils/generateAIImage`, {
+          prompt: prompt,
+        });
+        if (response.data.status === SUCCESS) {
+          setPreviewUrl(response.data.result[0]);
+          const fileRes = await fetch(response.data.result[0]);
+          const blob = await fileRes.blob();
+          const imgFile = new File([blob], 'image.jpg', { type: blob.type });
+          setFile(imgFile);
+        } else {
+          toast.error('AI image generation failed', ALERT_ERROR_CONFIG);
+        }
       } else {
-        toast.error('AI image generation failed', ALERT_ERROR_CONFIG);
+        toast.warn(`Insufficient BTC!`, ALERT_ERROR_CONFIG);
       }
     } catch (error) {
       console.error(error);
