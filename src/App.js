@@ -23,6 +23,7 @@ import Article2 from './components/article2';
 import Article3 from './components/article3';
 import Collections from './pages/collections';
 import CreatorHub from './pages/creatorhub';
+import Collection from './pages/collection';
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -103,6 +104,7 @@ function App() {
               />
               <Route path='/explorer' element={<Explorer />} />
               <Route path='/collections' element={<Collections />} />
+              <Route path='/collection/:symbol' element={<Collection />} />
               <Route path='/terms' element={<Terms />} />
               <Route path='/policy' element={<Policy />} />
               <Route path='/article1' element={<Article1 />} />

@@ -876,3 +876,7 @@ li::marker {
 input {
   background-color: transparent;
 }
+
+option {
+  background-color: var(--dark-box);
+}

@@ -130,6 +130,8 @@ export const DEBUG = console.log;
 // export const API_PATH = 'https://nft.defi.gold/api';
 export const API_PATH = 'http://localhost:7777/api';
 // export const API_PATH = 'http://94.130.32.157:7777/api'; //dev mode
+export const DOWNLOAD_PATH = 'http://localhost:7777/download';
+// export const DOWNLOAD_PATH = 'https://nft.defi.gold/download';
 
 /******************************************/
 export const NETWORK = NET_TYPE_TEST; // TODO
