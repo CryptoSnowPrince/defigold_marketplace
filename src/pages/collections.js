@@ -7,6 +7,7 @@ import {
 } from '../utils/constants';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import CollectionCard from '../components/collectioncard';
 
 const Collections = () => {
   const [collections, setCollections] = useState([]);
@@ -46,7 +47,18 @@ const Collections = () => {
           Create Collection
         </a>
       </div>
-      <table className='w-full'>
+      <div className='grid lg:grid-cols-4 grid-cols-2 lg:gap-16 gap-4 m-auto'>
+        {collections && collections.length > 0 ? (
+          collections.map((item, index) => {
+            return <CollectionCard collection={item} />;
+          })
+        ) : (
+          <div className='text-center col-span-2 lg:col-span-4 text-3xl'>
+            <span>No Data Found</span>
+          </div>
+        )}
+      </div>
+      {/* <table className='w-full'>
         <tr>
           <th className='w-4'>#</th>
           <th colSpan={2}>Collection</th>
@@ -86,7 +98,7 @@ const Collections = () => {
             </td>
           </tr>
         )}
-      </table>
+      </table> */}
     </div>
   );
 };
