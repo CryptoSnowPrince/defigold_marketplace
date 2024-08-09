@@ -41,7 +41,7 @@ const CollectionInfo = {
   discord: '',
   website: '',
   tipAddress: '',
-  hashList: [],
+  hashList: '',
 };
 
 const categories = [
@@ -54,6 +54,20 @@ const categories = [
   { id: 7, name: 'photography' },
   { id: 8, name: 'sports' },
 ];
+
+function isValidJson(str) {
+  try {
+    JSON.parse(str);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function hasDuplicates(arr) {
+  const uniqueElements = new Set(arr);
+  return uniqueElements.size !== arr.length;
+}
 
 function CreatorHub() {
   const { connected, feeData, ordinalsAddress, satBalance, sendBTC } =
@@ -76,8 +90,9 @@ function CreatorHub() {
   const [secondQuery, setSecondQuery] = useState(categories);
   const [iframeVisibility, setIframeVisibility] = useState(false);
   const [twitterLink, setTiwitterLink] = useState('');
+  const [symbolWarning, setSymbolWarning] = useState(false);
 
-  const onHandleChange = (e) => {
+  const onHandleChange = async (e) => {
     console.log(e.target.name, e.target.value);
     const { name, value } = e.target;
     setFieldInvalid(true);
@@ -86,24 +101,33 @@ function CreatorHub() {
     if (step === 1) {
       console.log(
         'step1',
-        emailRef.current.value.trim().length > 0,
-        validator.isEmail(emailRef.current.value),
-        isValidBitcoinAddress(walletRef.current.value)
+        emailRef.current?.value.trim().length > 0,
+        validator.isEmail(emailRef.current?.value),
+        isValidBitcoinAddress(walletRef.current?.value)
       );
       if (
-        emailRef.current.value.trim().length > 0 &&
-        validator.isEmail(emailRef.current.value) &&
-        isValidBitcoinAddress(walletRef.current.value)
+        emailRef.current?.value.trim().length > 0 &&
+        validator.isEmail(emailRef.current?.value) &&
+        isValidBitcoinAddress(walletRef.current?.value)
       ) {
         setFieldInvalid(false);
       }
     }
     if (step === 2) {
       if (
-        nameRef.current.value.trim().length > 0 &&
-        symbolRef.current.value.trim().length > 0
-      )
-        setFieldInvalid(false);
+        nameRef.current?.value.trim().length > 0 &&
+        symbolRef.current?.value.trim().length > 0
+      ) {
+        const params = { symbol: symbolRef.current.value };
+        const res = await axios.get(`${API_PATH}/collections/checkSymbol`, {
+          params,
+        });
+        console.log(res.data.result);
+        if (res.data.result.exist === false) {
+          setFieldInvalid(false);
+          setSymbolWarning(false);
+        } else setSymbolWarning(true);
+      }
     }
   };
 
@@ -111,13 +135,36 @@ function CreatorHub() {
     setStep(step - 1);
   };
 
-  const onNextStep = () => {
-    // TODO: check symbol existance for step 2
+  const onNextStep = async () => {
     setStep(step + 1);
     setFieldInvalid(true);
+    setSymbolWarning(false);
   };
 
   const handleSubmit = async () => {
+    if (!isValidJson(info.hashList)) {
+      toast.warn("Hash list doesn't match for JSON Object", ALERT_WARN_CONFIG);
+      return;
+    }
+    const inscriptionList = [];
+    JSON.parse(info.hashList).map((item) => {
+      inscriptionList.push(item.inscriptionID);
+    });
+    if (hasDuplicates(inscriptionList)) {
+      toast.warn('Duplicated InscriptionID detected.', ALERT_WARN_CONFIG);
+      return;
+    }
+    const checkRes = await axios.post(
+      `${API_PATH}/collections/checkInscription`,
+      { inscriptionList: JSON.stringify(inscriptionList) }
+    );
+    if (checkRes.data.result) {
+      toast.warn(
+        'Hash list includes already taken inscription.',
+        ALERT_WARN_CONFIG
+      );
+      return;
+    }
     if (!connected) {
       toast.warn('Connect your wallet first', ALERT_WARN_CONFIG);
       return;
@@ -173,7 +220,7 @@ function CreatorHub() {
     );
     if (response.data.status === SUCCESS) {
       toast.success('Collection created successfully.', ALERT_SUCCESS_CONFIG);
-      // window.location.href = '/collections';
+      window.location.href = '/collections';
     } else toast.warn(response.data.message, ALERT_ERROR_CONFIG);
   };
 
@@ -259,6 +306,11 @@ function CreatorHub() {
               required
               className='mb-3 border-[1px] md:w-80 px-2 py-3 font-sfui rounded-md'
             />
+            {symbolWarning && (
+              <span className='text-red-500 text-sm'>
+                Current symbol was already taken.
+              </span>
+            )}
           </div>
           <div className='flex flex-col w-full md:w-1/2 mx-auto font-sfui'>
             <h1 className='text-4xl mb-3'>Listing details</h1>
@@ -430,11 +482,19 @@ function CreatorHub() {
             <span className='text-xl'>Creator Tips Address(Optional)</span>
             <input
               type='text'
-              className='p-2 font-sfui w-full md:w-1/2 border-[1px] rounded-md'
+              className='p-2 font-sfui mb-6 w-full md:w-1/2 border-[1px] rounded-md'
               onChange={onHandleChange}
               name='tipAddress'
               placeholder='Valid Bitcoin (P2SH/P2WPKH/P2TR) Address'
               value={info.tipAddress}
+            />
+            <label className='text-2xl my-6'>Hash List</label>
+            <textarea
+              className='w-full border-[1px] rounded-lg'
+              rows='15'
+              name='hashList'
+              value={info.hashList}
+              onChange={onHandleChange}
             />
           </div>
         </Stepper>

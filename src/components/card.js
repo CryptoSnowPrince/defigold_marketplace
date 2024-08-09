@@ -30,16 +30,16 @@ const Card = ({ resId, resNumber, address, price, isListed, isOwner }) => {
             </Link>
           ) : (
             <>
-              <div className='product-info flex flex-row p-2.5 lg:p-5 justify-between items-center bg-primary rounded-md'>
-                <span className='text-light-text font-sfui text-xs leading-[10px] lg:text-xl lg:leading-5'>
+              <div className='product-info flex flex-row p-2.5 lg:p-4 xl:p-5 justify-between items-center bg-primary rounded-md'>
+                <span className='text-light-text font-sfui text-xs leading-[10px] lg:text-lg lg:leading-4 xl:text-xl xl:leading-5'>
                   Price
                 </span>
-                <span className='text-gold font-bold text-sm leading-3 lg:text-xl lg:leading-[18px]'>
+                <span className='text-gold font-bold max-lg:text-sm max-lg:leading-3 leading-4 xl:text-xl xl:leading-[18px]'>
                   {(price / 100_000_000).toFixed(4)} BTC
                 </span>
               </div>
               <Link
-                className='product-action bg-gold text-dark-text font-bold text-sm lg:text-xl p-1.5 lg:p-4 text-center rounded-md'
+                className='product-action bg-gold text-dark-text font-bold text-sm lg:text-xl p-1.5 lg:p-2.5 xl:p-4 text-center rounded-md'
                 to={`/detail/${resId}`}
               >
                 {!connected
