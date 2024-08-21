@@ -3,7 +3,7 @@ import TelegramIcon from '../assets/img/telegram.png';
 import DiscordIcon from '../assets/img/discord.png';
 import MediumIcon from '../assets/img/medium.png';
 import GithubIcon from '../assets/img/github.png';
-import ZealyIcon from '../assets/img/zealy.png';
+// import ZealyIcon from '../assets/img/zealy.png';
 import LinkIcon from '../assets/img/link.svg';
 import Logo from '../assets/img/Logo.svg';
 import GoldArrow from '../assets/img/gold-arrow.svg';
@@ -158,6 +158,7 @@ const Footer = () => {
           <img src={LinkIcon} alt='link' className='w-8 h-8' />
           {/* </a> */}
         </Link>
+        {/*
         <Link
           target='_blank'
           to='https://zealy.io/cw/defigoldtoken/questboard'
@@ -165,10 +166,8 @@ const Footer = () => {
         >
           <img src={ZealyIcon} alt='medium' className='mr-4 w-8 h-8' />
           <span className='mr-4'>Zealy</span>
-          {/* <a target='_blank' href='https://medium.com/@teamdefi.gold'> */}
           <img src={LinkIcon} alt='link' className='w-8 h-8' />
-          {/* </a> */}
-        </Link>
+        </Link>*/}
         {/* <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
           <img src={GithubIcon} alt='twitter' className='mr-6' />
           <span className='mr-4'>Github</span>
@@ -344,17 +343,15 @@ const Footer = () => {
               <img src={LinkIcon} alt='link' className='w-8 h-8' />
               {/* </a> */}
             </Link>
-            <Link
+            {/* <Link
               target='_blank'
               to='https://zealy.io/cw/defigoldtoken/questboard'
               className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'
             >
-              <img src={ZealyIcon} alt='zealy' className='mr-4 w-8 h-8' />
+              <img src={ZealyIcon} alt='' className='mr-4 w-8 h-8' />
               <span className='mr-4'>Zealy</span>
-              {/* <a target='_blank' href='https://zealy.io/cw/defigoldtoken'> */}
               <img src={LinkIcon} alt='link' className='w-8 h-8' />
-              {/* </a> */}
-            </Link>
+            </Link> */}
             {/* <div className='flex flex-row justify-center items-center text-base-text text-4xl leading-8'>
               <img src={GithubIcon} alt='twitter' className='mr-6' />
               <span className='mr-4'>Github</span>
